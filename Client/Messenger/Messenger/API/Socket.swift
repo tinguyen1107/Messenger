@@ -48,8 +48,8 @@ class Socket {
         socket.on("session") { data, ack  in
             if let name = data[0] as? NSDictionary {
                 print("** DATA **")
-                Default.user.userID = name["userID"] as! String
-                Default.user.sessionID = name["sessionID"] as! String
+//                Default.user.userID = name["userID"] as! String
+//                Default.user.sessionID = name["sessionID"] as! String
             }
         }
         

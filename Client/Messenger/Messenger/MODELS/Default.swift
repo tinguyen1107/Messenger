@@ -11,12 +11,12 @@ class Default {
     static var user = User()
     static var listFriend = [friend]()
 }
-
-class User {
-    var userID: String = ""
-    var username: String = ""
-    var sessionID: String = ""
-}
+//
+//class User {
+//    var userID: String = ""
+//    var username: String = ""
+//    var sessionID: String = ""
+//}
 
 class friend {
     internal init(userID: String = "", username: String = "", connect: Bool = false) {

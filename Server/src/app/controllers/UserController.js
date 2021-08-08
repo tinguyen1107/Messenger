@@ -10,6 +10,8 @@ function resultResJson (res, result, details) {
 class UserController {
 	// [POST] /login
 	login (req, res, next) {
+		console.log(req.params)
+		console.log(req.body)
 		if (!req.body.email || !req.body.password) {
 			resultResJson(res, 1, {error: "There is not enough parameters"});
 		} else {
@@ -19,7 +21,8 @@ class UserController {
 						resultResJson(res, 1, {error: "There are no email like this"})
 					} else {
 						if (user.password == req.body.password) {
-							resultResJson(res, 0, {error: "Login successfully", user: user});
+							resultResJson(res, 0, user);
+							console.log(user)
 						} else {
 							resultResJson(res, 1, {error: "Wrong password"});
 						}  
@@ -46,9 +49,9 @@ class UserController {
 						})
 						newUser.save(function(error) {
 							if (error) {
-								resultResJson(res, 2, {error: "Mongoose save error" + error});
+								resultResJson(res, 2, "Mongoose save error" + error);
 							} else { 
-								resultResJson(res, 0, {error: "Register successfully", user: user});
+								resultResJson(res, 0, user);
 							}
 						})
 					}

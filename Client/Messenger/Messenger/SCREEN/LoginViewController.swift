@@ -55,22 +55,25 @@ class LoginViewController: UIViewController {
         let naviHome = UINavigationController(rootViewController: home)
         naviHome.modalPresentationStyle = .fullScreen
         if (isLogin) {
-//            let user = User(id: idTextField.text!, password: passwordTextField.text!)
-            API.socket.isConnected(complete: {
-                self.present(naviHome, animated: true, completion: nil)
-            })
-            API.socket.connect(data: ["username": idTextField.text!])
-//            API.alamofire.login(user: user, complete: {
-//
-//            })
+            HttpRequest().login(user: User(email: idTextField.text!, password: passwordTextField.text!, _id: nil, fullname: nil)) { result, user in
+                if result == 0 {
+                    print ("Login Successfully")
+                    Default.user = user!
+                    print (user!)
+                    self.present(naviHome, animated: true, completion: nil)
+                }
+            }
         } else {
-
+            HttpRequest().register(user: User(email: idTextField.text!, password: passwordTextField.text!, _id: nil, fullname: nameUserTextField.text!)) { result, user in
+                if result == 0 {
+                    print ("Register Successfully")
+                    Default.user = user!
+                    self.present(naviHome, animated: true, completion: nil)
+                }
+            }
         }
         
         print("connect")
-        
-        
-        
     }
     
     let nameUserTextField: BaseInput = {
@@ -82,7 +85,7 @@ class LoginViewController: UIViewController {
     
     let idTextField: BaseInput = {
         let textfield = BaseInput()
-        textfield.placeholder = "ID"
+        textfield.placeholder = "Email"
         textfield.translatesAutoresizingMaskIntoConstraints = false
         return textfield
     }()

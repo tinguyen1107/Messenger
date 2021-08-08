@@ -1,17 +1,32 @@
 const User = require("../app/models/User");
+const Message = require("../app/models/Message")
 const UserController = require("../app/controllers/UserController");
 
 function route(app) {
   ///route
-  app.get('/', function(req, res) {
-    var user = new User({
-      email: "nttin@gmail.com", 
-      password: "123456",
-      fullname: "Nguyen Trong Tin",
-    })
+  // app.get('/', function(req, res) {
+    // User.find({})
+    //   .then (user => {
+    //     console.log("user: " + user);
+    //   })
+    // ;
+  // });
 
-    res.json(user);
-  });
+  app.post('/', function(req, res) {
+    const message = new Message({
+      content: req.body.content,
+      from: req.body.from,
+      to: req.body.to,
+      time: Date.now()
+    })
+    
+    message.save(function(error) {
+        if (error) {
+            console.log(error);
+        }
+    })
+    res.json(message)
+  })
 
   app.post("/login", UserController.login);
   app.post("/register", UserController.register);
