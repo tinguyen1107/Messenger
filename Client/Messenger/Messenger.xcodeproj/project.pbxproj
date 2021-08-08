@@ -14,6 +14,7 @@
 		A373B73526AC1CDB0002DEB0 /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A373B73426AC1CDB0002DEB0 /* MessageTableViewCell.swift */; };
 		A373B73826AC5A3F0002DEB0 /* Socket.swift in Sources */ = {isa = PBXBuildFile; fileRef = A373B73726AC5A3F0002DEB0 /* Socket.swift */; };
 		A373B73A26AC5A870002DEB0 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = A373B73926AC5A870002DEB0 /* API.swift */; };
+		A375C53326B26FE30098BE1F /* Default.swift in Sources */ = {isa = PBXBuildFile; fileRef = A375C53226B26FE30098BE1F /* Default.swift */; };
 		A382B16D26AED8C00053B897 /* HTTP Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = A382B16C26AED8C00053B897 /* HTTP Request.swift */; };
 		A3C7849726AB01C300EE41E2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C7849626AB01C300EE41E2 /* AppDelegate.swift */; };
 		A3C7849926AB01C300EE41E2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C7849826AB01C300EE41E2 /* SceneDelegate.swift */; };
@@ -64,6 +65,7 @@
 		A373B73426AC1CDB0002DEB0 /* MessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTableViewCell.swift; sourceTree = "<group>"; };
 		A373B73726AC5A3F0002DEB0 /* Socket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Socket.swift; sourceTree = "<group>"; };
 		A373B73926AC5A870002DEB0 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		A375C53226B26FE30098BE1F /* Default.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Default.swift; sourceTree = "<group>"; };
 		A382B16C26AED8C00053B897 /* HTTP Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HTTP Request.swift"; sourceTree = "<group>"; };
 		A3C7849326AB01C300EE41E2 /* Messenger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Messenger.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3C7849626AB01C300EE41E2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -163,6 +165,14 @@
 			path = API;
 			sourceTree = "<group>";
 		};
+		A375C53126B26FCC0098BE1F /* MODELS */ = {
+			isa = PBXGroup;
+			children = (
+				A375C53226B26FE30098BE1F /* Default.swift */,
+			);
+			path = MODELS;
+			sourceTree = "<group>";
+		};
 		A3C7848A26AB01C300EE41E2 = {
 			isa = PBXGroup;
 			children = (
@@ -189,6 +199,7 @@
 			isa = PBXGroup;
 			children = (
 				A373B73626AC5A2B0002DEB0 /* API */,
+				A375C53126B26FCC0098BE1F /* MODELS */,
 				A3C784C726AB039200EE41E2 /* SCREEN */,
 				A3C784C626AB021D00EE41E2 /* MORE */,
 				A3C784D826AB10A600EE41E2 /* BASE */,
@@ -579,6 +590,7 @@
 				A373B73826AC5A3F0002DEB0 /* Socket.swift in Sources */,
 				A3C784F526AB10A700EE41E2 /* BaseInput.swift in Sources */,
 				A3C784FB26AB18BF00EE41E2 /* HomeTableViewCell.swift in Sources */,
+				A375C53326B26FE30098BE1F /* Default.swift in Sources */,
 				A324737926AFEE5200C49834 /* Constant.swift in Sources */,
 				A3C784F826AB10A700EE41E2 /* CheckBox.swift in Sources */,
 				A3C784CD26AB03DF00EE41E2 /* ChatViewController.swift in Sources */,

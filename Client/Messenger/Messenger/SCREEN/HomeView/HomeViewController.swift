@@ -19,8 +19,6 @@ class HomeViewController: UIViewController {
                 ["name": "mongodb", "image": ""]]
     
     let CellID = "asdfhjklasfd"
-    
-    let socket = Socket(url: "http://localhost:7000")
         
     let tableView: UITableView = {
         let table = UITableView()
@@ -36,7 +34,9 @@ class HomeViewController: UIViewController {
 //        if (true) { /// neu ch dang nhap
 //            logOut()
 //        }
-        
+        API.socket.closureListUserChange = {
+            self.tableView.reloadData()
+        }
         
         setupNavigationBar()
         setupTableView()
@@ -68,24 +68,27 @@ class HomeViewController: UIViewController {
     }
     
     @objc func logOut () {
-        let login = LoginViewController()
-        login.modalPresentationStyle = .fullScreen
-        present(login, animated: true, completion: nil)
+//        let login = LoginViewController()
+//        login.modalPresentationStyle = .fullScreen
+//        present(login, animated: true, completion: nil)
+//
+        dismiss(animated: true, completion: nil)
+        API.socket.disconnect()
         
-//        socket.socket.connect()
     }
 }
 
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return data.count
+        return Default.listFriend.count
+//            data.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CellID) as! HomeTableViewCell
         
         cell.iconCell.image = UIImage(named: data[indexPath.row]["image"]!) ?? UIImage(systemName: "person.circle.fill")!
-        cell.titleLabel.text = data[indexPath.row]["name"]
+        cell.titleLabel.text = Default.listFriend[indexPath.row].username
         
         return cell
     }

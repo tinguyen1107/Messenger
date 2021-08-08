@@ -7,4 +7,4 @@
 
 import Foundation
 
-let BaseURL = "http://localhost:8080"
+let BaseURL = "http://localhost:7000"

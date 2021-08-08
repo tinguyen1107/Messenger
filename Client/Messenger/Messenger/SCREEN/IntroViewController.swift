@@ -35,7 +35,7 @@ class IntroViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            let loginSuccess: Bool = true
+            let loginSuccess: Bool = false
             if (!loginSuccess) {
                 let login = LoginViewController()
                 login.modalPresentationStyle = .fullScreen

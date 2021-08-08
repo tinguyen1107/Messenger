@@ -15,6 +15,8 @@ class LoginViewController: UIViewController {
         return false
     }
     
+    
+    
     var inputContainerHeightAnchor: NSLayoutConstraint?
     var nameUserTextFieldHeightAnchor: NSLayoutConstraint?
     
@@ -53,13 +55,20 @@ class LoginViewController: UIViewController {
         let naviHome = UINavigationController(rootViewController: home)
         naviHome.modalPresentationStyle = .fullScreen
         if (isLogin) {
-            let user = User(id: idTextField.text!, password: passwordTextField.text!)
-            API.alamofire.login(user: user, complete: {
+//            let user = User(id: idTextField.text!, password: passwordTextField.text!)
+            API.socket.isConnected(complete: {
                 self.present(naviHome, animated: true, completion: nil)
             })
+            API.socket.connect(data: ["username": idTextField.text!])
+//            API.alamofire.login(user: user, complete: {
+//
+//            })
         } else {
-            
+
         }
+        
+        print("connect")
+        
         
         
     }

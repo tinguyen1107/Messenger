@@ -6,8 +6,11 @@
 //
 
 import Foundation
+import SocketIO
 
 class API {
-//    static let socket = Socket(url: BaseURL)
-    static let alamofire = LocalAlamofire()
+    static let socket = Socket(url: BaseURL)
+//    static let alamofire = LocalAlamofire()
 }
+
+

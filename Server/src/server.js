@@ -14,6 +14,10 @@ var io = require('socket.io')(http);
 // Our port
 const port = 7000;
 
+//user
+//X5yRzQ1OwK2zu8Rf
+//mongodb+srv://user:X5yRzQ1OwK2zu8Rf@cluster0.2jlrt.mongodb.net/user?retryWrites=true&w=majority
+
 //wire up the server to listen to our port
 http.listen(port, function (data) {
     console.log (`LISTEN TO PORT ${port}`);
@@ -35,71 +39,119 @@ app.post('/register', function (req, res, next) {
 const crypto = require("crypto");
 const randomId = () => crypto.randomBytes(20).toString("hex");
 
-// io.use((socket, next) => {
-//     const sessionID = socket.handshake.auth.sessionID;
-//     if (sessionID) {
-//       const session = sessionStore.findSession(sessionID);
-//       if (session) {
-//         socket.sessionID = sessionID;
-//         socket.userID = session.userID;
-//         socket.username = session.username;
-//         return next();
-//       }
-//     }
-//     const username = socket.handshake.auth.username;
-//     // console.log(`name: ${socket.handshake.auth.username}`)
-//     if (!username) {
-//       return next(new Error("invalid username"));
-//     }
-//     socket.sessionID = randomId();
-//     socket.userID = randomId();
-//     socket.username = username;
-
-//     console.log(`name: ${socket.username}`)
-//     return next();
-// });
+const { InMemorySessionStore } = require("./sessionStore");
+const sessionStore = new InMemorySessionStore();
 
 ////
 io.on('connection', (socket) => {
+    var loginSuccess = false;
     console.log(`user connected with id: ${socket.id}`);
-    // socket.handshake.auth.sessionID
-    console.log(`info: ${JSON.stringify(socket.handshake.auth)}`)
-    console.log(`auth: ${socket.handshake.auth.auth}`)
 
+    socket.on("login", ({ content, to }) => {
+        const username = content.username;
+        const password = content.password;
+
+        const session = sessionStore.login(username, password);
+        if (session) {
+            socket.sessionID = session.sessionID;
+            socket.userID = session.userID;
+            socket.username = session.username;
+            loginSuccess = true;
+        }
+    });
+    
+    socket.on("register", ({ content, to }) => {
+        const username = content.username;
+        const password = content.password;
+        const age = content.age;
+
+        socket.sessionID = randomId();
+        socket.userID = randomId();
+
+        sessionStore.saveSession(socket.sessionID, {
+            userID: socket.userID,
+            username: socket.username,
+            connected: true,
+        });
+    });
     
 
-    socket.sessionID = randomId();
-    socket.userID = randomId();
-    socket.username = socket.handshake.auth.username;
+
+    const sessionID = socket.handshake.auth.sessionID;
+
+    if (sessionID) {
+        const session = sessionStore.findSession(sessionID);
+        if (session) {
+            socket.sessionID = sessionID;
+            socket.userID = session.userID;
+            socket.username = session.username;
+            return next();
+        }
+    } else {
+        const username = socket.handshake.auth.username;
+        socket.sessionID = randomId();
+        socket.userID = randomId();
+        socket.username = socket.handshake.auth.username;
+    }
+
+    // persist session
+    sessionStore.saveSession(socket.sessionID, {
+        userID: socket.userID,
+        username: socket.username,
+        connected: true,
+    });
+
+    // emit session details
+    socket.emit("session", {
+        sessionID: socket.sessionID,
+        userID: socket.userID,
+    });
+
+    // join the "userID" room
+    socket.join(socket.userID);
+
+    // fetch existing users
+    const users = [];
+    sessionStore.findAllSessions().forEach((session) => {
+        users.push({
+        userID: session.userID,
+        username: session.username,
+        connected: session.connected,
+        });
+    });
+
+    socket.emit("users", users);
 
     console.log(`name: ${socket.username}`)
+
+      // notify existing users
+    socket.broadcast.emit("user connected", {
+        userID: socket.userID,
+        username: socket.username,
+        connected: true,
+    });
+
+    // forward the private message to the right recipient (and to other tabs of the sender)
+    socket.on("private message", ({ content, to }) => {
+        socket.to(to).to(socket.userID).emit("private message", {
+        content,
+        from: socket.userID,
+        to,
+        });
+    });
+
+    socket.on("disconnect", async () => {
+        const matchingSockets = await io.in(socket.userID).allSockets();
+        const isDisconnected = matchingSockets.size === 0;
+        if (isDisconnected) {
+          // notify other users
+          socket.broadcast.emit("user disconnected", socket.userID);
+          // update the connection status of the session
+          sessionStore.saveSession(socket.sessionID, {
+            userID: socket.userID,
+            username: socket.username,
+            connected: false,
+          });
+        }
+    });
 });
-//To listen to messages
-// socket.on("connection", (socket)=>{
-//     console.log(`user connected with id: ${socket.id}`);
-    
-//     socket.on("disconnect", ()=>{
-//         console.log("Disconnected")
-//     });
-
-//     socket.on("chat message", function(msg){
-//         console.log('message: '  +  msg);
-//         //broadcast message to everyone in port:7000 except yourself.
-//         socket.broadcast.emit("received", { message: msg  });
-
-//         connect.then(db  =>  {
-//             console.log("connected correctly to the server");
-        
-//             let  chatMessage  =  new Chat({ message: msg, sender: "Anonymous"});
-//             chatMessage.save();
-//         });
-
-//         socket.on("typing", data => { 
-
-//             socket.broadcast.emit("notifyTyping", { user: data.user, message: data.message }); }); 
-        
-//         //when soemone stops typing
-        
-//         socket.on("stopTyping", () => { socket.broadcast.emit("notifyStopTyping"); });
-//     });
-// });
