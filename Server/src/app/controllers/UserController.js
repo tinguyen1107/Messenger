@@ -51,7 +51,7 @@ class UserController {
 							if (error) {
 								resultResJson(res, 2, "Mongoose save error" + error);
 							} else { 
-								resultResJson(res, 0, user);
+								resultResJson(res, 0, newUser);
 							}
 						})
 					}

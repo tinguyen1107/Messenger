@@ -10,9 +10,9 @@ module.exports =  function(io) {
             email: socket.handshake.auth.email,
             fullname: socket.handshake.auth.fullname,
         })
-        console.log(`User connection: \n\tName: ${user.fullname} \n\tEmail: ${user.email} \n\tId: ${user._id}`);
+        console.log(`User connection: \n\tName: ${socket.user.fullname} \n\tEmail: ${socket.user.email} \n\tId: ${socket.user._id}`);
         
-        socket.join(socket.user.userID);
+        socket.join(socket.user._id);
 
         var listUsers = []
         User.find({})
@@ -20,14 +20,17 @@ module.exports =  function(io) {
                 users.forEach (element => {
                     listUsers.push([element._id, element.fullname, element.email]);
                 });
+
+                console.log(`User: ${users}`)
+                console.log(`List: ${listUsers}`)
+                socket.emit("list_users_in_database", listUsers);               
              })
-            .catch()
-        
-        socket.to(socket.user.userID).emit("list_users_in_database", listUsers);
+            .catch()        
         
         socket.broadcast.emit("user_connected", {
             _id: socket.user._id,
             fullname: socket.user.fullname,
+            email: socket.user.email,
             // connected: true,
         });
 
@@ -38,7 +41,7 @@ module.exports =  function(io) {
                 to: to,
                 time: Date.now()
             })
-            
+
             message.save(function(error) {
                 if (error) {
                     console.log(error);
