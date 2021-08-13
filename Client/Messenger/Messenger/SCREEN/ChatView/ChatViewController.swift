@@ -72,6 +72,10 @@ class ChatViewController: UIViewController {
         self.navigationItem.leftBarButtonItem = backButton
         
         setupView()
+        
+        API.socket.closureListMessageChange = { message in
+            
+        }
     }
     
     @objc func handleBack () {

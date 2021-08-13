@@ -15,8 +15,6 @@ class LoginViewController: UIViewController {
         return false
     }
     
-    
-    
     var inputContainerHeightAnchor: NSLayoutConstraint?
     var nameUserTextFieldHeightAnchor: NSLayoutConstraint?
     
@@ -54,13 +52,23 @@ class LoginViewController: UIViewController {
         let home = HomeViewController()
         let naviHome = UINavigationController(rootViewController: home)
         naviHome.modalPresentationStyle = .fullScreen
+                
         if (isLogin) {
             HttpRequest().login(user: User(email: idTextField.text!, password: passwordTextField.text!, _id: nil, fullname: nil)) { result, user in
                 if result == 0 {
                     print ("Login Successfully")
                     Default.user = user!
-                    print (user!)
-                    self.present(naviHome, animated: true, completion: nil)
+//                    print (Default.user)
+                    let data: Dictionary<String, String> = [
+                        "_id": Default.user._id!,
+                        "email": Default.user.email!,
+                        "fullname": Default.user.fullname!
+                    ]
+                    home.title = Default.user.fullname!
+                    print (data)
+                    self.present(naviHome, animated: true, completion: {
+                        API.socket.connect(data: data)
+                    })
                 }
             }
         } else {
@@ -68,12 +76,19 @@ class LoginViewController: UIViewController {
                 if result == 0 {
                     print ("Register Successfully")
                     Default.user = user!
-                    self.present(naviHome, animated: true, completion: nil)
+                    print (Default.user)
+                    let data: Dictionary<String, String> = [
+                        "_id": Default.user._id!,
+                        "email": Default.user.email!,
+                        "fullname": Default.user.fullname!
+                    ]
+                    
+                    self.present(naviHome, animated: true, completion: {
+                        API.socket.connect(data: data)
+                    })
                 }
             }
         }
-        
-        print("connect")
     }
     
     let nameUserTextField: BaseInput = {
@@ -113,10 +128,7 @@ class LoginViewController: UIViewController {
         loginRegisterButton.setTitle(title, for: .normal)
         
         let which = loginRegisterSegmentedControl.selectedSegmentIndex == 0 //login: true, register: false
-        // change height of inputContainer
         inputContainerHeightAnchor?.constant = which ? 100 : 150
-        
-        // change height of nameUser tf
         nameUserTextFieldHeightAnchor?.constant = which ? 0 : 50
         
         clearAllDidInput()

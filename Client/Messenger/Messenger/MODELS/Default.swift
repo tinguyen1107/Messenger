@@ -9,7 +9,8 @@ import Foundation
 
 class Default {
     static var user = User()
-    static var listFriend = [friend]()
+    static var listFriend: [User] = []
+    static var listMessage: [Message] = []
 }
 //
 //class User {
@@ -18,14 +19,14 @@ class Default {
 //    var sessionID: String = ""
 //}
 
-class friend {
-    internal init(userID: String = "", username: String = "", connect: Bool = false) {
-        self.userID = userID
-        self.username = username
-        self.connect = connect
-    }
-    
-    var userID: String = ""
-    var username: String = ""
-    var connect: Bool = false
-}
+//class friend {
+//    internal init(userID: String = "", username: String = "", connect: Bool = false) {
+//        self.userID = userID
+//        self.username = username
+//        self.connect = connect
+//    }
+//
+//    var userID: String = ""
+//    var username: String = ""
+//    var connect: Bool = false
+//}

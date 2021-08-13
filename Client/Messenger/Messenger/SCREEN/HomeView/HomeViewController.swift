@@ -31,9 +31,10 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .green
-//        if (true) { /// neu ch dang nhap
-//            logOut()
-//        }
+        HttpRequest().getAllUsersWithConservation(complete: { result, listUser in
+            Default.listFriend = listUser!
+            self.tableView.reloadData()
+        })
         API.socket.closureListUserChange = {
             self.tableView.reloadData()
         }
@@ -68,41 +69,45 @@ class HomeViewController: UIViewController {
     }
     
     @objc func logOut () {
-//        let login = LoginViewController()
-//        login.modalPresentationStyle = .fullScreen
-//        present(login, animated: true, completion: nil)
-//
+        Default.user = User()
         dismiss(animated: true, completion: nil)
         API.socket.disconnect()
-        
     }
 }
 
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return Default.listFriend.count
-//            data.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CellID) as! HomeTableViewCell
         
         cell.iconCell.image = UIImage(named: data[indexPath.row]["image"]!) ?? UIImage(systemName: "person.circle.fill")!
-        cell.titleLabel.text = Default.listFriend[indexPath.row].username
+        cell.titleLabel.text = Default.listFriend[indexPath.row].fullname
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let chatView = ChatViewController()
+        
+        HttpRequest().getPreviousMessages(toId: Default.listFriend[indexPath.row]._id!, complete: { result, messages in
+            let listMessages = messages!.map { message in
+                message.split(separator: "_", maxSplits: 1)
+                    .map { String($0) == Default.user._id ? "user" : String($0) }
+            }
+            let chatView = ChatViewController()
+            chatView.data = listMessages
+            chatView.title = self.data[indexPath.row]["name"]
 
-        chatView.title = data[indexPath.row]["name"]
-
-        let navChatView = UINavigationController(rootViewController: chatView)
+            let navChatView = UINavigationController(rootViewController: chatView)
+            navChatView.modalPresentationStyle = .fullScreen
+            self.present(navChatView, animated: true, completion: nil)
+        })
+        
 //        let view = UIView(frame: CGRect(x: 0, y: 0, width: 1000, height: 1000))
 //        view.backgroundColor = .blue
 //        chatView.navigationItem.titleView = view
-        navChatView.modalPresentationStyle = .fullScreen
-        present(navChatView, animated: true, completion: nil)
+        
     }
 }

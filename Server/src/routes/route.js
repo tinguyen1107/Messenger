@@ -1,17 +1,10 @@
 const User = require("../app/models/User");
 const Message = require("../app/models/Message")
 const UserController = require("../app/controllers/UserController");
+const ConservationController = require("../app/controllers/ConservationController");
+const MessageController = require("../app/controllers/MessageController")
 
 function route(app) {
-  ///route
-  // app.get('/', function(req, res) {
-    // User.find({})
-    //   .then (user => {
-    //     console.log("user: " + user);
-    //   })
-    // ;
-  // });
-
   app.post('/', function(req, res) {
     const message = new Message({
       content: req.body.content,
@@ -30,6 +23,12 @@ function route(app) {
 
   app.post("/login", UserController.login);
   app.post("/register", UserController.register);
+  
+  app.get("/get_all_users", UserController.getAllUsers);
+
+  // app.post("/conservation/create_new_conservation", ConservationController.createNewConservation);
+  app.post("/conservation/get_all_friends", ConservationController.getListConservations);
+  app.post("/conservation/get_messages", ConservationController.getPreviousMessages);
 }
 
 module.exports = route;

@@ -3,12 +3,25 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A3B42E9E26BEDCF6008DA684 /* InputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B42E9D26BEDCF6008DA684 /* InputView.swift */; };
+		A327D5AB26C42B5C0048E9E4 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A327D5AA26C42B5C0048E9E4 /* HomeView.swift */; };
+		A327D5AE26C42D8B0048E9E4 /* SimpleCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A327D5AD26C42D8B0048E9E4 /* SimpleCard.swift */; };
+		A327D5B026C444E00048E9E4 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A327D5AF26C444E00048E9E4 /* SearchBar.swift */; };
+		A327D5B426C450D40048E9E4 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A327D5B326C450D40048E9E4 /* ChatView.swift */; };
+		A3481C9B26C52EB300E9C6FB /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3481C9A26C52EB300E9C6FB /* InfoView.swift */; };
+		A3481C9E26C52EEC00E9C6FB /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3481C9D26C52EEC00E9C6FB /* SettingView.swift */; };
+		A3481CA026C55C0300E9C6FB /* Information.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3481C9F26C55C0300E9C6FB /* Information.swift */; };
+		A3481CA426C597B000E9C6FB /* UserDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3481CA326C597B000E9C6FB /* UserDetails.swift */; };
+		A3481CA726C5DB2900E9C6FB /* SocketIO in Frameworks */ = {isa = PBXBuildFile; productRef = A3481CA626C5DB2900E9C6FB /* SocketIO */; };
+		A3481CA926C5DC0500E9C6FB /* SocketIO.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3481CA826C5DC0500E9C6FB /* SocketIO.swift */; };
+		A36EFE4926C51F1200382578 /* ListFriendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36EFE4826C51F1200382578 /* ListFriendView.swift */; };
 		A3B42EA126BEDD62008DA684 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B42EA026BEDD62008DA684 /* CustomButton.swift */; };
+		A3C4845526C238B90037389D /* Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C4845426C238B90037389D /* Alamofire.swift */; };
+		A3C4845826C23BCC0037389D /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = A3C4845726C23BCC0037389D /* Alamofire */; };
+		A3C4845F26C2C0D30037389D /* ListUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C4845E26C2C0D30037389D /* ListUser.swift */; };
 		A3D72A4426BECB1C00332E44 /* MessengerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D72A4326BECB1C00332E44 /* MessengerApp.swift */; };
 		A3D72A4626BECB1C00332E44 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D72A4526BECB1C00332E44 /* ContentView.swift */; };
 		A3D72A4826BECB1D00332E44 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A3D72A4726BECB1D00332E44 /* Assets.xcassets */; };
@@ -36,8 +49,19 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		A3B42E9D26BEDCF6008DA684 /* InputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputView.swift; sourceTree = "<group>"; };
+		A327D5AA26C42B5C0048E9E4 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		A327D5AD26C42D8B0048E9E4 /* SimpleCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleCard.swift; sourceTree = "<group>"; };
+		A327D5AF26C444E00048E9E4 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
+		A327D5B326C450D40048E9E4 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
+		A3481C9A26C52EB300E9C6FB /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
+		A3481C9D26C52EEC00E9C6FB /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
+		A3481C9F26C55C0300E9C6FB /* Information.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Information.swift; sourceTree = "<group>"; };
+		A3481CA326C597B000E9C6FB /* UserDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetails.swift; sourceTree = "<group>"; };
+		A3481CA826C5DC0500E9C6FB /* SocketIO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketIO.swift; sourceTree = "<group>"; };
+		A36EFE4826C51F1200382578 /* ListFriendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListFriendView.swift; sourceTree = "<group>"; };
 		A3B42EA026BEDD62008DA684 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		A3C4845426C238B90037389D /* Alamofire.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alamofire.swift; sourceTree = "<group>"; };
+		A3C4845E26C2C0D30037389D /* ListUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListUser.swift; sourceTree = "<group>"; };
 		A3D72A4026BECB1C00332E44 /* Messenger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Messenger.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3D72A4326BECB1C00332E44 /* MessengerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessengerApp.swift; sourceTree = "<group>"; };
 		A3D72A4526BECB1C00332E44 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -58,6 +82,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A3C4845826C23BCC0037389D /* Alamofire in Frameworks */,
+				A3481CA726C5DB2900E9C6FB /* SocketIO in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,9 +104,84 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A327D5AC26C42D580048E9E4 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				A3481C9926C52E9900E9C6FB /* Info User */,
+				A36EFE4A26C5206900382578 /* List User */,
+				A36EFE4726C51D8900382578 /* List Friend */,
+				A3481C9C26C52EDD00E9C6FB /* Setting View */,
+				A327D5AA26C42B5C0048E9E4 /* HomeView.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		A327D5B126C450B00048E9E4 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				A327D5B326C450D40048E9E4 /* ChatView.swift */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		A327D5B226C450BF0048E9E4 /* Main Views */ = {
+			isa = PBXGroup;
+			children = (
+				A3D72A6E26BECB9C00332E44 /* Login */,
+				A327D5AC26C42D580048E9E4 /* Home */,
+				A327D5B126C450B00048E9E4 /* Chat */,
+			);
+			path = "Main Views";
+			sourceTree = "<group>";
+		};
+		A3481C9926C52E9900E9C6FB /* Info User */ = {
+			isa = PBXGroup;
+			children = (
+				A3481C9A26C52EB300E9C6FB /* InfoView.swift */,
+				A3481C9F26C55C0300E9C6FB /* Information.swift */,
+			);
+			path = "Info User";
+			sourceTree = "<group>";
+		};
+		A3481C9C26C52EDD00E9C6FB /* Setting View */ = {
+			isa = PBXGroup;
+			children = (
+				A3481C9D26C52EEC00E9C6FB /* SettingView.swift */,
+			);
+			path = "Setting View";
+			sourceTree = "<group>";
+		};
+		A3481CAA26C5DC0B00E9C6FB /* API */ = {
+			isa = PBXGroup;
+			children = (
+				A3C4845426C238B90037389D /* Alamofire.swift */,
+				A3481CA826C5DC0500E9C6FB /* SocketIO.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		A36EFE4726C51D8900382578 /* List Friend */ = {
+			isa = PBXGroup;
+			children = (
+				A36EFE4826C51F1200382578 /* ListFriendView.swift */,
+			);
+			path = "List Friend";
+			sourceTree = "<group>";
+		};
+		A36EFE4A26C5206900382578 /* List User */ = {
+			isa = PBXGroup;
+			children = (
+				A3C4845E26C2C0D30037389D /* ListUser.swift */,
+				A3481CA326C597B000E9C6FB /* UserDetails.swift */,
+			);
+			path = "List User";
+			sourceTree = "<group>";
+		};
 		A3B42E9F26BEDD4E008DA684 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
+				A327D5AF26C444E00048E9E4 /* SearchBar.swift */,
+				A327D5AD26C42D8B0048E9E4 /* SimpleCard.swift */,
 				A3B42EA026BEDD62008DA684 /* CustomButton.swift */,
 			);
 			path = Custom;
@@ -109,13 +210,14 @@
 		A3D72A4226BECB1C00332E44 /* Messenger */ = {
 			isa = PBXGroup;
 			children = (
+				A327D5B226C450BF0048E9E4 /* Main Views */,
 				A3B42E9F26BEDD4E008DA684 /* Custom */,
-				A3D72A6E26BECB9C00332E44 /* Login */,
 				A3D72A4326BECB1C00332E44 /* MessengerApp.swift */,
 				A3D72A4526BECB1C00332E44 /* ContentView.swift */,
 				A3D72A4726BECB1D00332E44 /* Assets.xcassets */,
 				A3D72A4C26BECB1D00332E44 /* Info.plist */,
 				A3D72A4926BECB1D00332E44 /* Preview Content */,
+				A3481CAA26C5DC0B00E9C6FB /* API */,
 			);
 			path = Messenger;
 			sourceTree = "<group>";
@@ -150,7 +252,6 @@
 			isa = PBXGroup;
 			children = (
 				A3D72A6F26BECBCE00332E44 /* LoginView.swift */,
-				A3B42E9D26BEDCF6008DA684 /* InputView.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -171,6 +272,10 @@
 			dependencies = (
 			);
 			name = Messenger;
+			packageProductDependencies = (
+				A3C4845726C23BCC0037389D /* Alamofire */,
+				A3481CA626C5DB2900E9C6FB /* SocketIO */,
+			);
 			productName = Messenger;
 			productReference = A3D72A4026BECB1C00332E44 /* Messenger.app */;
 			productType = "com.apple.product-type.application";
@@ -242,6 +347,10 @@
 				Base,
 			);
 			mainGroup = A3D72A3726BECB1C00332E44;
+			packageReferences = (
+				A3C4845626C23BCC0037389D /* XCRemoteSwiftPackageReference "Alamofire" */,
+				A3481CA526C5DB2900E9C6FB /* XCRemoteSwiftPackageReference "socket.io-client-swift" */,
+			);
 			productRefGroup = A3D72A4126BECB1C00332E44 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -284,11 +393,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A327D5AB26C42B5C0048E9E4 /* HomeView.swift in Sources */,
+				A3C4845526C238B90037389D /* Alamofire.swift in Sources */,
 				A3D72A7026BECBCE00332E44 /* LoginView.swift in Sources */,
-				A3B42E9E26BEDCF6008DA684 /* InputView.swift in Sources */,
+				A327D5B426C450D40048E9E4 /* ChatView.swift in Sources */,
+				A3481C9B26C52EB300E9C6FB /* InfoView.swift in Sources */,
+				A327D5AE26C42D8B0048E9E4 /* SimpleCard.swift in Sources */,
+				A36EFE4926C51F1200382578 /* ListFriendView.swift in Sources */,
 				A3D72A4626BECB1C00332E44 /* ContentView.swift in Sources */,
+				A3481CA026C55C0300E9C6FB /* Information.swift in Sources */,
+				A3481C9E26C52EEC00E9C6FB /* SettingView.swift in Sources */,
+				A3481CA926C5DC0500E9C6FB /* SocketIO.swift in Sources */,
 				A3D72A4426BECB1C00332E44 /* MessengerApp.swift in Sources */,
 				A3B42EA126BEDD62008DA684 /* CustomButton.swift in Sources */,
+				A3C4845F26C2C0D30037389D /* ListUser.swift in Sources */,
+				A327D5B026C444E00048E9E4 /* SearchBar.swift in Sources */,
+				A3481CA426C597B000E9C6FB /* UserDetails.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -608,6 +728,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		A3481CA526C5DB2900E9C6FB /* XCRemoteSwiftPackageReference "socket.io-client-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/socketio/socket.io-client-swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 16.0.1;
+			};
+		};
+		A3C4845626C23BCC0037389D /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.4.3;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A3481CA626C5DB2900E9C6FB /* SocketIO */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A3481CA526C5DB2900E9C6FB /* XCRemoteSwiftPackageReference "socket.io-client-swift" */;
+			productName = SocketIO;
+		};
+		A3C4845726C23BCC0037389D /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A3C4845626C23BCC0037389D /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = A3D72A3826BECB1C00332E44 /* Project object */;
 }

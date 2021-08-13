@@ -1,11 +1,5 @@
 const User = require("../models/User");
-
-function resultResJson (res, result, details) {
-	res.json({
-		result,
-		details,
-	})
-}
+const httpSupport = require("../../util/HttpSupport");
 
 class UserController {
 	// [POST] /login
@@ -13,18 +7,18 @@ class UserController {
 		console.log(req.params)
 		console.log(req.body)
 		if (!req.body.email || !req.body.password) {
-			resultResJson(res, 1, {error: "There is not enough parameters"});
+			httpSupport.resultResJson(res, 1, {error: "There is not enough parameters"});
 		} else {
 			User.findOne({ email: req.body.email })
 				.then(user => {
 					if (!user) {
-						resultResJson(res, 1, {error: "There are no email like this"})
+						httpSupport.resultResJson(res, 1, {error: "There are no email like this"})
 					} else {
 						if (user.password == req.body.password) {
-							resultResJson(res, 0, user);
+							httpSupport.resultResJson(res, 0, user);
 							console.log(user)
 						} else {
-							resultResJson(res, 1, {error: "Wrong password"});
+							httpSupport.resultResJson(res, 1, {error: "Wrong password"});
 						}  
 					}
 				}) 
@@ -35,12 +29,12 @@ class UserController {
 	// [POST] /user/register
 	register (req, res, next) {
 		if (!req.body.email || !req.body.password || !req.body.fullname) {
-			resultResJson(res, 1, {error: "There is not enough parameters"});
+			httpSupport.resultResJson(res, 1, {error: "There is not enough parameters"});
 		} else {
 			User.findOne({ email: req.body.email})
 				.then(user => {
 					if (user) {
-						resultResJson(res, 1, {error: "This email has already been"});
+						httpSupport.resultResJson(res, 1, {error: "This email has already been"});
 					} else {
 						const newUser = new User({
 							email: req.body.email,
@@ -49,9 +43,9 @@ class UserController {
 						})
 						newUser.save(function(error) {
 							if (error) {
-								resultResJson(res, 2, "Mongoose save error" + error);
+								httpSupport.resultResJson(res, 2, "Mongoose save error" + error);
 							} else { 
-								resultResJson(res, 0, newUser);
+								httpSupport.resultResJson(res, 0, newUser);
 							}
 						})
 					}
@@ -59,6 +53,33 @@ class UserController {
 				.catch(next)
 		}
 	}
+
+	getUserByListId(listId) {
+		User.find({ _id: listId[0] })
+			.then (users => {
+				console.log (users)
+				return users;
+			})
+			.catch()
+	}
+
+	// [GET] /get_all_users
+	getAllUsers (req, res, next) {
+		User.find({})
+		.then(users => {
+			// httpSupport.resultResJson(res, 0, users);
+			console.log (users)
+			if (users != null) {
+				httpSupport.resultResJson(res, 0, users);
+			} else {
+				httpSupport.resultResJson(res, 1, "There no users");
+			}
+		})
+		.catch(error => {
+			httpSupport.resultResJson(res, 0, "error");
+		})
+	}
+
 }
 
 module.exports = new UserController();

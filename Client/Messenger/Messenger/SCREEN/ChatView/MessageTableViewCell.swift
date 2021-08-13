@@ -51,7 +51,7 @@ class MessageTableViewCell: UITableViewCell {
                 $0.right.equalTo(self.contentView).offset(-5)
             })
             message.textAlignment = .right
-        } else if data![0] == "friend" {
+        } else {
             containerView.snp.makeConstraints({
                 $0.left.equalTo(self.contentView).offset(5)
             })

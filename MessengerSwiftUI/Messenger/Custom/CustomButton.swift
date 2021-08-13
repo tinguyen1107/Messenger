@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ABC: ButtonStyle {
+struct SimpleButton: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .frame(height: 35)
@@ -20,13 +20,23 @@ struct ABC: ButtonStyle {
     }
 }
 
+struct InputTextField: TextFieldStyle {
+    func _body(configuration: TextField<Self._Label>) -> some View {
+        configuration
+            .shadow(radius: 5)
+            .autocapitalization(.none)
+            .disableAutocorrection(true)
+            .textFieldStyle(RoundedBorderTextFieldStyle())
+    }
+}
+
 struct testButton: PreviewProvider {
     static var previews: some View {
         VStack{
             Button("hello", action: {
                 
             })
-                .buttonStyle(ABC())
+                .buttonStyle(SimpleButton())
         }
         
     }
