@@ -30,7 +30,7 @@ final class Services: ObservableObject {
                let rawMessage = data["message"] {
                 DispatchQueue.main.async {
                     MessageSupport().decodeMessage(userId: <#T##String#>, message: <#T##String#>)
-                    //                    if
+
 //                    self?.messages.append(rawMessage)
                 }
             }
