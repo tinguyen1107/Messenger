@@ -16,7 +16,7 @@ module.exports =  function(io) {
             email: socket.handshake.auth.email,
             fullname: socket.handshake.auth.fullname,
         })
-        console.log(`User connection: \n\tName: ${socket.user.fullname} \n\tEmail: ${socket.user.email} \n\tId: ${socket.user._id}`);
+        console.log(`User connection socket: \n\tName: ${socket.user.fullname} \n\tEmail: ${socket.user.email} \n\tId: ${socket.user._id}`);
         
         socket.join(socket.user._id);
 
@@ -49,7 +49,7 @@ module.exports =  function(io) {
                 .then(conservation => {
                     if (conservation) {
                         const message = socket.user._id + "_" + content;
-                        socket.to(to).to(socket.user._id).emit("send_message", message);
+                        socket.to(to).to(socket.user._id).emit("receive_message", message);
                         Message.findOneAndUpdate(
                             { address: conservation._id }, 
                             { $push: { messages: message }},

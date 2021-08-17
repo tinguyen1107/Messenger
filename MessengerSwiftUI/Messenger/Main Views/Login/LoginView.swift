@@ -7,13 +7,6 @@
 
 import SwiftUI
 
-struct User: Codable, Hashable {
-    var _id: String?
-    var email: String
-    var password: String
-    var fullname: String
-}
-
 struct AlertContent: Identifiable {
     var id: String { title }
     let title: String
@@ -21,7 +14,7 @@ struct AlertContent: Identifiable {
 }
 
 struct LoginView: View {
-    
+    @EnvironmentObject var services: Services
     
     @State private var state = "login"
     @State private var willMoveToNextScreen = false
@@ -52,12 +45,10 @@ struct LoginView: View {
                 
                 NavigationLink (destination: HomeView(user: user), isActive: $willMoveToNextScreen) { EmptyView() }
                 Button(action: {
-//                    willMoveToNextScreen.toggle()
                     Alamofire().login_register(state: state, user: user) { result, detail in
                         if result == 0 {
                             self.user = detail!
-                            
-                            Service().connect(user: user)
+                            services.connect(user: user)
                             willMoveToNextScreen.toggle()
                         } else {
                             selectedShow = AlertContent(title: "Log in failed", description: "Please try again.")

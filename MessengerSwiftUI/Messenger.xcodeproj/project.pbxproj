@@ -17,6 +17,7 @@
 		A3481CA426C597B000E9C6FB /* UserDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3481CA326C597B000E9C6FB /* UserDetails.swift */; };
 		A3481CA726C5DB2900E9C6FB /* SocketIO in Frameworks */ = {isa = PBXBuildFile; productRef = A3481CA626C5DB2900E9C6FB /* SocketIO */; };
 		A3481CA926C5DC0500E9C6FB /* SocketIO.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3481CA826C5DC0500E9C6FB /* SocketIO.swift */; };
+		A3481CAD26C63A0B00E9C6FB /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3481CAC26C63A0B00E9C6FB /* User.swift */; };
 		A36EFE4926C51F1200382578 /* ListFriendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36EFE4826C51F1200382578 /* ListFriendView.swift */; };
 		A3B42EA126BEDD62008DA684 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B42EA026BEDD62008DA684 /* CustomButton.swift */; };
 		A3C4845526C238B90037389D /* Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C4845426C238B90037389D /* Alamofire.swift */; };
@@ -58,6 +59,7 @@
 		A3481C9F26C55C0300E9C6FB /* Information.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Information.swift; sourceTree = "<group>"; };
 		A3481CA326C597B000E9C6FB /* UserDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetails.swift; sourceTree = "<group>"; };
 		A3481CA826C5DC0500E9C6FB /* SocketIO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketIO.swift; sourceTree = "<group>"; };
+		A3481CAC26C63A0B00E9C6FB /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		A36EFE4826C51F1200382578 /* ListFriendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListFriendView.swift; sourceTree = "<group>"; };
 		A3B42EA026BEDD62008DA684 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		A3C4845426C238B90037389D /* Alamofire.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alamofire.swift; sourceTree = "<group>"; };
@@ -127,6 +129,7 @@
 		A327D5B226C450BF0048E9E4 /* Main Views */ = {
 			isa = PBXGroup;
 			children = (
+				A3D72A4526BECB1C00332E44 /* ContentView.swift */,
 				A3D72A6E26BECB9C00332E44 /* Login */,
 				A327D5AC26C42D580048E9E4 /* Home */,
 				A327D5B126C450B00048E9E4 /* Chat */,
@@ -158,6 +161,14 @@
 				A3481CA826C5DC0500E9C6FB /* SocketIO.swift */,
 			);
 			path = API;
+			sourceTree = "<group>";
+		};
+		A3481CAB26C639FE00E9C6FB /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A3481CAC26C63A0B00E9C6FB /* User.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		A36EFE4726C51D8900382578 /* List Friend */ = {
@@ -210,14 +221,14 @@
 		A3D72A4226BECB1C00332E44 /* Messenger */ = {
 			isa = PBXGroup;
 			children = (
+				A3481CAA26C5DC0B00E9C6FB /* API */,
+				A3481CAB26C639FE00E9C6FB /* Models */,
 				A327D5B226C450BF0048E9E4 /* Main Views */,
 				A3B42E9F26BEDD4E008DA684 /* Custom */,
 				A3D72A4326BECB1C00332E44 /* MessengerApp.swift */,
-				A3D72A4526BECB1C00332E44 /* ContentView.swift */,
 				A3D72A4726BECB1D00332E44 /* Assets.xcassets */,
 				A3D72A4C26BECB1D00332E44 /* Info.plist */,
 				A3D72A4926BECB1D00332E44 /* Preview Content */,
-				A3481CAA26C5DC0B00E9C6FB /* API */,
 			);
 			path = Messenger;
 			sourceTree = "<group>";
@@ -400,6 +411,7 @@
 				A3481C9B26C52EB300E9C6FB /* InfoView.swift in Sources */,
 				A327D5AE26C42D8B0048E9E4 /* SimpleCard.swift in Sources */,
 				A36EFE4926C51F1200382578 /* ListFriendView.swift in Sources */,
+				A3481CAD26C63A0B00E9C6FB /* User.swift in Sources */,
 				A3D72A4626BECB1C00332E44 /* ContentView.swift in Sources */,
 				A3481CA026C55C0300E9C6FB /* Information.swift in Sources */,
 				A3481C9E26C52EEC00E9C6FB /* SettingView.swift in Sources */,

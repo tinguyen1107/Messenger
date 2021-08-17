@@ -8,9 +8,6 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var searchKey = ""
-    @State var isSearch = false
-    
     var body: some View {
         LoginView()
     }
