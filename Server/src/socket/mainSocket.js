@@ -25,6 +25,36 @@ module.exports =  function(io) {
         } else {
             console.log("Client want to register")
         }
+
+        socket.on("create_conservation_submit", (newFriend_id) => {
+            console.log(`Create new conservation ${socket.user._id} with ${newFriend_id}`)
+
+            var conservation = new Conservation ({
+                address: "",
+                users_id: [socket.user._id, newFriend_id],
+            })
+            conservation.address = conservation._id.toString();
+            console.log(conservation)
+
+            
+
+            conservation.save(function(error) { 
+                if (!error) {
+                    var message = new Message({
+                        address: conservation._id.toString(),
+                        messages: [], 
+                    })
+                    message.save(function(error) {
+                        if(!error) {
+                            console.log("create consevation and message successfully")
+                            io.to(newFriend_id).emit("someone_create_consevation_receive", socket.user)
+                            
+                            io.to(socket.user._id).emit("respone_create_conservation", socket.user)
+                        }
+                    })
+                }
+            })
+        })
         // var conservations = ConservationController.getAllConservation()
         // socket.emit("conservation") 
 
@@ -45,9 +75,6 @@ module.exports =  function(io) {
         //     // connected: true,
         // });
 
-        socket.on("create_new_conservation", (ids) => {
-            
-        })
 
         socket.on("send_messsage", ({ content, to }) => {
             Conservation.find({users_id: {$all: [socket.user._id, to]}})

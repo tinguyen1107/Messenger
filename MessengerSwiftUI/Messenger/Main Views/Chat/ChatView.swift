@@ -30,17 +30,18 @@ struct Message: View {
 }
 
 struct ChatView: View {
-    var user: User
+    @EnvironmentObject var services: DefaultController
+
     var friend: User
     
     @State private var message: String = ""
     @State private var isTyping: Bool = false
     @State private var listMessages: [[String]] = []
     
-    init (user: User, friend: User) {
-        self.user = user
-        self.friend = friend
-    }
+//    init (user: User, friend: User) {
+//        self.user = user
+//        self.friend = friend
+//    }
 
     var body: some View {
         VStack {
@@ -98,7 +99,7 @@ struct ChatView: View {
                 }
             }
             .onAppear {
-                Alamofire().getPreviousMessages(fromId: user._id!, toId: friend._id!, complete: { result, messages in
+                Alamofire().getPreviousMessages(fromId: services.user._id!, toId: friend._id!, complete: { result, messages in
                     if result == 0 {
                         listMessages = messages!
                     }
@@ -115,6 +116,6 @@ struct ChatView: View {
 
 struct ChatView_Previews: PreviewProvider {
     static var previews: some View {
-        ChatView(user: emptyUser, friend: User(_id: nil, email: "abc@gmail.com", password: "", fullname: "Noo"))
+        ChatView(friend: User(_id: nil, email: "abc@gmail.com", password: "", fullname: "Noo"))
     }
 }

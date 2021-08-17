@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct UserDetails: View {
-    var user: User
+    @EnvironmentObject var services: DefaultController
     
+    var user: User
     var content: [[String]] {
         [
             ["Email", user.email],
@@ -35,7 +36,7 @@ struct UserDetails: View {
                     Spacer()
                     
                     Button (action: {
-                        
+                        services.addFriend(newFriend: user)
                     }, label: {
                         HStack {
                             Image(systemName: "plus")

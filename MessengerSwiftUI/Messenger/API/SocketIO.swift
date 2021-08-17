@@ -20,7 +20,7 @@ final class DefaultController: ObservableObject {
         manager.defaultSocket
     }
     
-    @Published var user = User(_id: "", email: "", password: "", fullname: "")
+    @Published var user = emptyUser
     @Published var friends: [User] = []
     @Published var messages: Dictionary<String, [String]> = [:]
     
@@ -33,27 +33,44 @@ final class DefaultController: ObservableObject {
             print ("Socket connected")
         }
         
-        socket.on("receive_message") { [weak self] (data, ack) in
-            if let data = data[0] as? [String: String],
-               let rawMessage = data["message"] {
-                DispatchQueue.main.async {
-//                    MessageSupport().decodeMessage(userId: <#T##String#>, message: T##String)
-
-//                    self?.messages.append(rawMessage)
-                }
+//        socket.on("receive_message") { [weak self] (data, ack) in
+//            if let data = data[0] as? [String: String],
+//               let rawMessage = data["message"] {
+//                DispatchQueue.main.async {
+////                    MessageSupport().decodeMessage(userId: <#T##String#>, message: T##String)
+//
+////                    self?.messages.append(rawMessage)
+//                }
+//            }
+//        }
+//
+        socket.on("someone_create_consevation_receive") { data, ack in
+            let newFriend = try! JSONDecoder().decode(User.self, from: data[0] as! Data)
+            DispatchQueue.main.async {
+                self.friends.append(newFriend)
             }
         }
-    }
-    
-//    func login (email: String, password: String) {
 //
-//    }
+//        socket.on("respone_create_conservation") { data, ack in
+//            <#code#>
+//        }
+    }
     
     func connect (user: User) {
         let encoder = JSONEncoder()
         let data = try! encoder.encode(user)
         guard let final = try! JSONSerialization.jsonObject(with: data, options: .allowFragments) as? Dictionary<String, String> else { return }
         socket.connect(withPayload: final)
+    }
+    
+    func addFriend (newFriend: User) {
+        socket.on("respone_create_conservation") { data, ack in
+            DispatchQueue.main.async {
+                self.friends.append(newFriend)
+            }
+        }
+        
+        socket.emit("create_conservation_submit", newFriend._id!)
     }
     
     func sendMessage (content: String, toId: String) {

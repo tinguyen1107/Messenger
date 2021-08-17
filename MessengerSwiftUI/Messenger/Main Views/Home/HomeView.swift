@@ -45,7 +45,7 @@ struct HomeView: View {
                     Label("Users", systemImage: "person.crop.circle")
                 }
                 .tag(Tab.info)
-            ListFriendView(user: user)
+            ListFriendView()
                 .tabItem {
                     Label("Friends", systemImage: "bubble.left.and.bubble.right")
                 }
