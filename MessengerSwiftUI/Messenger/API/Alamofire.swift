@@ -9,7 +9,7 @@ import Foundation
 import Alamofire
 import SwiftUI
 
-let BaseURL = "http://localhost:7000"
+let BaseURL = "http://192.168.1.101:7000"
 
 extension UIApplication {
     func endEditing() {
@@ -93,7 +93,7 @@ struct Alamofire {
     
     func getPreviousMessages(fromId: String, toId: String, complete: @escaping (Int, [[String]]?)->()) {
         let url = BaseURL + "/conservation/get_messages"
-        let params: Parameters = [ "ids": fromId ]
+        let params: Parameters = [ "ids": [fromId, toId] ]
         
         AF.request(url, method: .post, parameters: params)
             .validate(statusCode: 200..<300)

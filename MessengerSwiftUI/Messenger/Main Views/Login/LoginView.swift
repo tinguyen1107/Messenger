@@ -14,15 +14,12 @@ struct AlertContent: Identifiable {
 }
 
 struct LoginView: View {
-    @EnvironmentObject var services: Services
+    @EnvironmentObject var services: DefaultController
     
     @State private var state = "login"
     @State private var willMoveToNextScreen = false
     @State private var selectedShow: AlertContent?
-    
-    @State private var user: User = User(_id: nil, email: "", password: "", fullname: "")
-    @State private var listUser: [User] = []
-    
+        
     var body: some View {
         NavigationView {
             VStack{
@@ -34,30 +31,28 @@ struct LoginView: View {
                 .padding(.bottom, 10)
                 .shadow(radius: 5)
                 VStack {
-                    TextField ("Email", text: $user.email)
-                    SecureField ("Password", text: $user.password)
+                    TextField ("Email", text: $services.user.email)
+                    SecureField ("Password", text: $services.user.password)
                         
                     if state == "register" {
-                        TextField ("Age", text: $user.fullname)
+                        TextField ("Fullname", text: $services.user.fullname)
                     }
                 }
                 .textFieldStyle(InputTextField())
                 
-                NavigationLink (destination: HomeView(user: user), isActive: $willMoveToNextScreen) { EmptyView() }
+                NavigationLink (destination: HomeView(user: services.user), isActive: $willMoveToNextScreen) { EmptyView() }
                 Button(action: {
-                    Alamofire().login_register(state: state, user: user) { result, detail in
+                    Alamofire().login_register(state: state, user: services.user) { result, detail in
                         if result == 0 {
-                            self.user = detail!
-                            services.connect(user: user)
+                            services.user = detail!
+                            services.connect(user: User(_id: services.user._id, email: services.user.email, password: services.user.password, fullname: (state == "register" ? services.user.fullname : "")))
                             willMoveToNextScreen.toggle()
                         } else {
                             selectedShow = AlertContent(title: "Log in failed", description: "Please try again.")
                         }
                     }
                 }, label: {
-                    HStack {
-                        Text(state == "login" ? "Login" : "Register")
-                    }
+                    HStack { Text(state == "login" ? "Login" : "Register") }
                 })
                 .buttonStyle(SimpleButton())
                 .padding(.top, 10)

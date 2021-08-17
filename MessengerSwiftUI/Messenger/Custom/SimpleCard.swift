@@ -12,8 +12,13 @@ struct SimpleCard: View {
     
     var body: some View {
         HStack {
-            CircleImage(image: Image(systemName: "person.crop.circle"))
+            CircleImage(image: Image("rainbowlake").resizable())
+                .frame(width: 55, height: 55)
+           
             Text(name)
+                .foregroundColor(.black)
+                .padding(.leading, 10)
+                .font(.title3)
             Spacer()
         }
         .padding(.vertical, 10)

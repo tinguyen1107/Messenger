@@ -9,10 +9,7 @@ import SwiftUI
 
 struct HomeView: View {
     enum Tab {
-        case info
-        case listUser
-        case listFriend
-        case setting
+        case info, listUser, listFriend, setting
         
         var title: String {
             switch self {
@@ -25,8 +22,15 @@ struct HomeView: View {
         
         var isHiddenNavigation: Bool {
             switch self {
-            case .info: return false
-            default: return true
+            case .info: return true
+            default: return false
+            }
+        }
+        
+        var barColor: UIColor {
+            switch self {
+            case .info: return .clear
+            default: return #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
             }
         }
     }
@@ -36,7 +40,7 @@ struct HomeView: View {
     
     var body: some View {
         TabView (selection: $selection) {
-            InfoView(user: user)
+            InfoView()
                 .tabItem {
                     Label("Users", systemImage: "person.crop.circle")
                 }
@@ -46,7 +50,7 @@ struct HomeView: View {
                     Label("Friends", systemImage: "bubble.left.and.bubble.right")
                 }
                 .tag(Tab.listFriend)
-            ListUser(user: user)
+            ListUser()
                 .tabItem {
                     Label("More friend", systemImage: "person.crop.circle.badge.plus")
                 }
@@ -57,8 +61,12 @@ struct HomeView: View {
                 }
                 .tag(Tab.setting)
         }
+        .navigationBarTitleDisplayMode(.inline)
+        .navigationBarColor(selection.barColor)
         .navigationBarBackButtonHidden(true)
-        .navigationTitle(selection.title)
+        .navigationBarHidden(selection.isHiddenNavigation)
+        .navigationTitle(selection.title).font(.title2)
+        
     }
 }
 
@@ -67,6 +75,46 @@ struct HomeView_Previews: PreviewProvider {
         NavigationView{
             HomeView(user: User(_id: "", email: "ntrongtin11702@gmail.com", password: "", fullname: "Nguyễn Trọng Tín"))
         }
+    }
+}
+
+extension View {
+    func navigationBarColor(_ backgroundColor: UIColor?) -> some View {
+        self.modifier(NavigationBarModifier(backgroundColor: backgroundColor))
+    }
+}
+
+
+struct NavigationBarModifier: ViewModifier {
+    
+    var backgroundColor: UIColor?
+    
+    init( backgroundColor: UIColor?) {
+        self.backgroundColor = backgroundColor
+        let coloredAppearance = UINavigationBarAppearance()
+        coloredAppearance.configureWithTransparentBackground()
+        coloredAppearance.backgroundColor = .clear
+        coloredAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+        coloredAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
         
+        UINavigationBar.appearance().standardAppearance = coloredAppearance
+        UINavigationBar.appearance().compactAppearance = coloredAppearance
+        UINavigationBar.appearance().scrollEdgeAppearance = coloredAppearance
+        UINavigationBar.appearance().tintColor = .white
+        
+    }
+    
+    func body(content: Content) -> some View {
+        ZStack{
+            content
+            VStack {
+                GeometryReader { geometry in
+                    Color(self.backgroundColor ?? .clear)
+                        .frame(height: geometry.safeAreaInsets.top)
+                        .edgesIgnoringSafeArea(.top)
+                    Spacer()
+                }
+            }
+        }
     }
 }

@@ -4,7 +4,6 @@ const httpSupport = require("../../util/HttpSupport");
 class UserController {
 	// [POST] /login
 	login (req, res, next) {
-		console.log(req.params)
 		console.log(req.body)
 		if (!req.body.email || !req.body.password) {
 			httpSupport.resultResJson(res, 1, {error: "There is not enough parameters"});
@@ -16,8 +15,9 @@ class UserController {
 					} else {
 						if (user.password == req.body.password) {
 							httpSupport.resultResJson(res, 0, user);
-							console.log(user)
+							console.log(`Log in successfully: ${user}`)
 						} else {
+							console.log(`Log in failed`)
 							httpSupport.resultResJson(res, 1, {error: "Wrong password"});
 						}  
 					}
@@ -67,7 +67,6 @@ class UserController {
 	getAllUsers (req, res, next) {
 		User.find({})
 		.then(users => {
-			// httpSupport.resultResJson(res, 0, users);
 			console.log (users)
 			if (users != null) {
 				httpSupport.resultResJson(res, 0, users);

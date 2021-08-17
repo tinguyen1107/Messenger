@@ -8,16 +8,17 @@
 import SwiftUI
 
 struct InfoView: View {
-    var user: User
-    
+    @EnvironmentObject var services: DefaultController
+
     @Environment(\.presentationMode) var presentation
  
     var body: some View {
         ScrollView {
-            Information(user: user)
+            Information(user: services.user)
             
             Button(action: {
                 self.presentation.wrappedValue.dismiss()
+                services.user = emptyUser
             }, label: {
                 HStack {
                     Text("Log out")
@@ -29,12 +30,12 @@ struct InfoView: View {
                 .padding(.horizontal)
             })
         }
-        .ignoresSafeArea(edges: .top)
+        .ignoresSafeArea(edges: .all)
     }
 }
 
 struct InfoView_Previews: PreviewProvider {
     static var previews: some View {
-        InfoView(user: User(_id: "", email: "nttin@gmail.com", password: "", fullname: "Nguyen Trong Tin"))
+        InfoView()
     }
 }

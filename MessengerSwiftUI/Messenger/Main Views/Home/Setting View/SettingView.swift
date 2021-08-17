@@ -11,7 +11,7 @@ struct SettingView: View {
     @Environment(\.presentationMode) var presentation
     
     var body: some View {
-        VStack {
+//        VStack {
             ScrollView {
                 Button(action: {
                     self.presentation.wrappedValue.dismiss()
@@ -25,8 +25,9 @@ struct SettingView: View {
                     .cornerRadius(9)
                     .padding(.horizontal)
                 })
+                .padding(.vertical, 10)
             }
-        }
+//        }
     }
 }
 

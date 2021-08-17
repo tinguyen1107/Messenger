@@ -55,14 +55,12 @@ struct Information: View {
                                 .frame(maxWidth: .infinity, alignment: .trailing)
                         }
                     }
-                    .foregroundColor(.black)
                 }
                 Divider()
             }
             .padding(.horizontal)
         }
         .ignoresSafeArea(edges: .top)
-//        .navigationBarHidden(true)
     }
 }
 

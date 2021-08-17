@@ -9,7 +9,7 @@ import SwiftUI
 
 @main
 struct MessengerApp: App {
-    @StateObject var services: Services = Services()
+    @StateObject var services: DefaultController = DefaultController()
     
     var body: some Scene {
         WindowGroup {

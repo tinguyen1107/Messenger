@@ -57,7 +57,7 @@ class ConservationController {
                 } else {
                     const listId = conservations.map(x => {
                         if (x.users_id[0] == id) return x.users_id[1] 
-                        else return x.user_id[0]
+                        else return x.users_id[0]
                     })
                     console.log (`User ${listId}`)
                     User.find({ _id: {$in: listId} })
@@ -76,7 +76,7 @@ class ConservationController {
     getPreviousMessages (req, res, next) {
         // get address
         var ids = req.body.ids;
-        console.log(ids)
+        console.log("List Id: " + ids)
         Conservation.find({ users_id: {$all: ids} }) 
             .then( conservation => {
                 console.log (conservation)

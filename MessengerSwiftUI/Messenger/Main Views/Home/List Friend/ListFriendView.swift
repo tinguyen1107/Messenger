@@ -18,27 +18,28 @@ struct ListFriendView: View {
     @State var listFriend: [User] = []
     
     var body: some View {
-        
-        VStack (alignment: .leading) {
-            NavigationLink(destination: ChatView(user: user, friend: choosenUser), tag: "ChatView", selection: $selected) { EmptyView() }
-            NavigationLink(destination: ChatView(user: user, friend: choosenUser), tag: "UserView", selection: $selected) { EmptyView() }
-            
-            SearchBar(searchKey: $searchKey, isSearching: $isSearching)
-            List (searchFor(key: searchKey), id: \.self) { friend in
-                Button(action: {
-                    choosenUser = friend
-                    self.selected = "ChatView"
-                }, label: {
-                    SimpleCard(name: friend.fullname)
+        ScrollView {
+            VStack (alignment: .leading) {
+                NavigationLink(destination: ChatView(user: user, friend: choosenUser), tag: "ChatView", selection: $selected) { EmptyView() }
+                NavigationLink(destination: ChatView(user: user, friend: choosenUser), tag: "UserView", selection: $selected) { EmptyView() }
+                
+                SearchBar(searchKey: $searchKey, isSearching: $isSearching)
+                ForEach (searchFor(key: searchKey), id: \.self) { friend in
+                    Button  {
+                        choosenUser = friend
+                        self.selected = "ChatView"
+                    } label: {
+                        SimpleCard(name: friend.fullname)
+                    }
+                }
+            }
+            .onAppear {
+                Alamofire().getAllUsersWithConservation(fromId: user._id!, complete: { result, friends in
+                    if result == 0 {
+                        self.listFriend = friends!
+                    }
                 })
             }
-        }
-        .onAppear {
-            Alamofire().getAllUsersWithConservation(fromId: user._id!, complete: { result, friends in
-                if result == 0 {
-                    self.listFriend = friends!
-                }
-            })
         }
     }
     
@@ -49,6 +50,6 @@ struct ListFriendView: View {
 
 struct ListFriendView_Previews: PreviewProvider {
     static var previews: some View {
-        ListFriendView(user: User(_id: "", email: "", password: "", fullname: ""))
+        ListFriendView(user: emptyUser)
     }
 }

@@ -36,18 +36,24 @@ struct ChatView: View {
     @State private var message: String = ""
     @State private var isTyping: Bool = false
     @State private var listMessages: [[String]] = []
+    
+    init (user: User, friend: User) {
+        self.user = user
+        self.friend = friend
+    }
 
     var body: some View {
         VStack {
             ScrollView {
                 ForEach (listMessages.indices, id: \.self) { index in
                     Message(message: $listMessages[index])
-                }
+                }.padding(.top, 5)
             }
-            .padding(.top, 5)
+            
             Spacer()
                 .frame(width: UIScreen.main.bounds.width, height: 1, alignment: .center)
                 .background(Color(.systemGray4))
+            
             HStack {
                 HStack {
                     TextField("Type message here ...", text: $message)
@@ -103,11 +109,12 @@ struct ChatView: View {
         }
         .navigationTitle(friend.fullname)
         .navigationBarTitleDisplayMode(.inline)
+        .navigationBarColor(.lightGray)
     }
 }
 
 struct ChatView_Previews: PreviewProvider {
     static var previews: some View {
-        ChatView(user: User(_id: "", email: "", password: "", fullname: ""), friend: User(_id: nil, email: "abc@gmail.com", password: "", fullname: "Noo"))
+        ChatView(user: emptyUser, friend: User(_id: nil, email: "abc@gmail.com", password: "", fullname: "Noo"))
     }
 }

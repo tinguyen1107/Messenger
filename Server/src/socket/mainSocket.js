@@ -20,6 +20,11 @@ module.exports =  function(io) {
         
         socket.join(socket.user._id);
 
+        if (socket.fullname == null) {
+            console.log("Client want to login")
+        } else {
+            console.log("Client want to register")
+        }
         // var conservations = ConservationController.getAllConservation()
         // socket.emit("conservation") 
 

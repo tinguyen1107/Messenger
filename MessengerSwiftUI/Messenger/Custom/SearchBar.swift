@@ -55,6 +55,7 @@ struct SearchBar: View {
         }
         .transition(.move(edge: .trailing))
         .animation(.default)
+        .padding(.vertical, 10)
     }
 }
 

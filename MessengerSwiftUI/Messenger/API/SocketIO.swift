@@ -10,17 +10,25 @@ import SocketIO
 
 //let manager = SocketManager(socketURL: URL(string: BaseURL)!, config: [.log(true), .compress])
 //let socket = manager.defaultSocket
+let emptyUser = User (_id: "", email: "", password: "", fullname: "")
 
-final class Services: ObservableObject {
+final class DefaultController: ObservableObject {
+    
     private var manager = SocketManager(socketURL: URL(string: BaseURL)!, config: [.log(true), .compress])
-    var socket: SocketIOClient {
+    
+    public var socket: SocketIOClient {
         manager.defaultSocket
     }
     
     @Published var user = User(_id: "", email: "", password: "", fullname: "")
+    @Published var friends: [User] = []
     @Published var messages: Dictionary<String, [String]> = [:]
     
     init() {
+        socketListening()
+    }
+    
+    func socketListening () {
         socket.on(clientEvent: .connect) { (data, ack) in
             print ("Socket connected")
         }
@@ -29,13 +37,17 @@ final class Services: ObservableObject {
             if let data = data[0] as? [String: String],
                let rawMessage = data["message"] {
                 DispatchQueue.main.async {
-                    MessageSupport().decodeMessage(userId: <#T##String#>, message: <#T##String#>)
+//                    MessageSupport().decodeMessage(userId: <#T##String#>, message: T##String)
 
 //                    self?.messages.append(rawMessage)
                 }
             }
         }
     }
+    
+//    func login (email: String, password: String) {
+//
+//    }
     
     func connect (user: User) {
         let encoder = JSONEncoder()
