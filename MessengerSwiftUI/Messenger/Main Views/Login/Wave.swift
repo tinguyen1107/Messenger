@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct Wave: View {
-    let timer = Timer.publish(every: 0.04, on: .main, in: .common).autoconnect()
+    let timer = Timer.publish(every: 0.06, on: .main, in: .common).autoconnect()
     
     @State var x: CGFloat = -1.0
     @State var range: CGFloat = 0
@@ -25,7 +25,7 @@ struct Wave: View {
                         startPoint: .bottom, endPoint: .top
                     )
                 )
-            path(in: CGRect(x: 0, y: 0, width: geometry.size.width, height: geometry.size.height), delta: 0)
+            path(in: CGRect(x: 0, y: 0, width: geometry.size.width, height: geometry.size.height), delta: 4.5)
                 .fill(Color(.white))
             
         }
@@ -39,7 +39,7 @@ struct Wave: View {
  
         let width = rect.width
         let height = rect.height
-        let baseHeight = height * 1/9
+        let baseHeight = height * 1/15
     
         let wavelength = width / frequency
         path.move(to: CGPoint(x: width, y: height))
@@ -47,7 +47,7 @@ struct Wave: View {
     
         for x in stride(from: 0, through: width, by: 1) {
             let relativeX = x / wavelength
-            let sine = sin(relativeX + self.range + delta)
+            let sine = sin(relativeX + self.range*delta/4.5 + delta)
             let y = strength * sine + baseHeight
             path.addLine(to: CGPoint(x: x, y: y))
         }

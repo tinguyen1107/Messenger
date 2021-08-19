@@ -31,14 +31,13 @@ struct LoginView: View {
                             .padding(.top, 2)
                     }
                     .padding(.leading, 20)
-                    .padding(.bottom, 20)
                     Spacer()
                 }
                 .frame(maxWidth: UIScreen.main.bounds.width)
-//                Spacer()
+                Spacer()
                 ZStack {
                     Wave(strength: 20, frequency: 10)
-                        .frame(height: UIScreen.main.bounds.height*3/5)
+                        .frame(height: UIScreen.main.bounds.height*0.6)
                     InputView()
                         .padding(.horizontal, 20)
                 }

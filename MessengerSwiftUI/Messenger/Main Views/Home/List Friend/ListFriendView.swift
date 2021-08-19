@@ -46,10 +46,6 @@ struct ListFriendView: View {
             }
         }
     }
-    
-//    func searchFor (key: String) -> [User] {
-//        return services.friends.filter({ $0.fullname.contains(searchKey) || searchKey == ""})
-//    }
 }
 
 struct ListFriendView_Previews: PreviewProvider {
