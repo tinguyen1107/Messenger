@@ -51,7 +51,7 @@ class Socket {
         
         socket.on("send_messsage") { data, ack in
             print(data)
-            
+            z
             let final = try! JSONSerialization.data(withJSONObject: data[0])
             let message = try! JSONDecoder().decode(Message.self, from: final)
             

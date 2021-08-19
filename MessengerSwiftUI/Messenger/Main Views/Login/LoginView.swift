@@ -14,59 +14,44 @@ struct AlertContent: Identifiable {
 }
 
 struct LoginView: View {
-    @EnvironmentObject var services: DefaultController
-    
-    @State private var state = "login"
-    @State private var willMoveToNextScreen = false
-    @State private var selectedShow: AlertContent?
-        
     var body: some View {
         NavigationView {
-            VStack{
-                Picker(selection: $state, label: Text("")) {
-                    Text("Login").tag("login")
-                    Text("Register").tag("register")
-                }
-                .pickerStyle(SegmentedPickerStyle())
-                .padding(.bottom, 10)
-                .shadow(radius: 5)
-                VStack {
-                    TextField ("Email", text: $services.user.email)
-                    SecureField ("Password", text: $services.user.password)
-                        
-                    if state == "register" {
-                        TextField ("Fullname", text: $services.user.fullname)
+            VStack (alignment: .leading) {
+                Spacer()
+                HStack {
+                    VStack (alignment: .leading) {
+                        Text("Messenger")
+                            .font(.system(size: 40, weight: .semibold, design: .rounded))
+                            .foregroundColor(Color(#colorLiteral(red: 0.1411764771, green: 0.3960784376, blue: 0.5647059083, alpha: 1)))
+                            .lineLimit(1)
+                        Text("Welcome to messenger!\nLet say something to your friend!")
+                            .font(.system(size: 18, weight: .regular, design: .rounded))
+                            .foregroundColor(Color(#colorLiteral(red: 0.180785032, green: 0.5511000946, blue: 0.8088557696, alpha: 1)))
+                            .lineLimit(2)
+                            .padding(.top, 2)
                     }
+                    .padding(.leading, 20)
+                    .padding(.bottom, 20)
+                    Spacer()
                 }
-                .textFieldStyle(InputTextField())
-                
-                NavigationLink (destination: HomeView(user: services.user), isActive: $willMoveToNextScreen) { EmptyView() }
-                Button(action: {
-                    Alamofire().login_register(state: state, user: services.user) { result, detail in
-                        if result == 0 {
-                            services.user = detail!
-                            services.connect(user: User(_id: services.user._id, email: services.user.email, password: services.user.password, fullname: (state == "register" ? services.user.fullname : "")))
-                            willMoveToNextScreen.toggle()
-                        } else {
-                            selectedShow = AlertContent(title: "Log in failed", description: "Please try again.")
-                        }
-                    }
-                }, label: {
-                    HStack { Text(state == "login" ? "Login" : "Register") }
-                })
-                .buttonStyle(SimpleButton())
-                .padding(.top, 10)
-                .shadow(radius: 5)
-                
-                
+                .frame(maxWidth: UIScreen.main.bounds.width)
+//                Spacer()
+                ZStack {
+                    Wave(strength: 20, frequency: 10)
+                        .frame(height: UIScreen.main.bounds.height*3/5)
+                    InputView()
+                        .padding(.horizontal, 20)
+                }
             }
-            .frame(width: UIScreen.main.bounds.width * 0.85)
+            .background(
+                LinearGradient(
+                    gradient: Gradient(colors: [Color(#colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)), Color(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1))]),
+                    startPoint: .top,
+                    endPoint: .bottom
+                )
+            )
+            .ignoresSafeArea()
             .animation(.default)
-            .navigationBarHidden(true)
-            .alert(item: $selectedShow) { show in
-                Alert(title: Text(show.title), message: Text(show.description), dismissButton: .cancel())
-
-            }
         }
     }
 }
@@ -84,5 +69,6 @@ struct OvalTextFieldStyle: TextFieldStyle {
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
         LoginView()
+            .environmentObject(DefaultController())
     }
 }
