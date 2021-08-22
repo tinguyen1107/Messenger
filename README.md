@@ -25,6 +25,8 @@ Mongo Database (NonSQL)
 ## Way to run:
 ### Server:
 ```
+npm install
+npm i nodemon --save-dev
 npm start
 ```
 ### Client SwiftUI app: 
