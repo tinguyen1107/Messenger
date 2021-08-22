@@ -1,12 +1,16 @@
 # Messenger
 
-- Way to run:
-// database
-    - source ~/.bashrc
-    - mongod --dbpath /Users/trongtin/Tinguyen/Messenger/Database
-// server
-    - npm start
-// IOS app
+## Feautures
+ - Login + Register.
+ - Add Friend.
+ - Chat.
+ - View your and user's profile.
+ 
+ ## Way to run:
+### Server:
+```
+npm start
+```
 
-
-access token
+### Client SwiftUI app: 
+Run in XCode
