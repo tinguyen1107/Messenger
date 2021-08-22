@@ -22,7 +22,7 @@ struct InputView: View {
                 Text("Login").tag("login")
                 Text("Register").tag("register")
             }
-            .colorMultiply(Color(#colorLiteral(red: 0.2589848042, green: 0.7580695748, blue: 0.9667426944, alpha: 1)))
+            .colorMultiply(Color(#colorLiteral(red: 0.5811089873, green: 0.8589370251, blue: 0.9827749133, alpha: 1)))
             .pickerStyle(SegmentedPickerStyle())
             .padding(.bottom, 10)
             .shadow(radius: 5)
@@ -30,17 +30,17 @@ struct InputView: View {
                 TextField ("Email", text: $services.user.email,
                            onEditingChanged: { if $0 { self.kGuardian.showField = 0 } })
                     .background(GeometryGetter(rect: $kGuardian.rects[0]))
-
-                TextField ("Password", text: $services.user.password,
-                           onEditingChanged: { if $0 { self.kGuardian.showField = 1 } })
+                
+                SecureField ("Password", text: $services.user.password)
                     .background(GeometryGetter(rect: $kGuardian.rects[1]))
-
+                    .onTapGesture {
+                        self.kGuardian.showField = 1
+                    }
                 
                 if state == "register" {
                     TextField ("Fullname", text: $services.user.fullname,
                                onEditingChanged: { if $0 { self.kGuardian.showField = 2 } })
                         .background(GeometryGetter(rect: $kGuardian.rects[2]))
-
                 }
             }
             .textFieldStyle(InputTextField())
@@ -50,16 +50,16 @@ struct InputView: View {
                 Alamofire().login_register(state: state, user: services.user) { result, detail in
                     if result == 0 {
                         services.user = detail!
-                        services.connect(user: User(_id: services.user._id, email: services.user.email, password: services.user.password, fullname: (state == "register" ? services.user.fullname : "")))
+                        services.connect(user: User(_id: services.user._id, email: services.user.email, password: state, fullname: services.user.fullname))
                         willMoveToNextScreen.toggle()
                     } else {
-                        selectedShow = AlertContent(title: "Log in failed", description: "Please try again.")
+                        selectedShow = AlertContent(title: "Log in failed", description: "Please try again.", dismiss: true)
                     }
                 }
             }, label: {
                 HStack { Text(state == "login" ? "Login" : "Register") }
             })
-            .buttonStyle(SimpleButton(color: Color(#colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1))))
+            .buttonStyle(SimpleButton(color: Color(#colorLiteral(red: 0.5811089873, green: 0.8589370251, blue: 0.9827749133, alpha: 1)), textColor: Color(#colorLiteral(red: 0.1396988332, green: 0.394677639, blue: 0.5602707863, alpha: 1))))
             .padding(.top, 10)
             .shadow(radius: 5)
             
@@ -67,10 +67,9 @@ struct InputView: View {
         }
         .navigationBarHidden(true)
         .alert(item: $selectedShow) { show in
-            Alert(title: Text(show.title), message: Text(show.description), dismissButton: .cancel())
+            Alert(title: Text(show.title), message: Text(show.description ?? ""), dismissButton: .cancel())
         }
         .offset(y: kGuardian.slide)
-        .animation(.easeInOut(duration: 0.5))
         .onAppear { self.kGuardian.addObserver() }
         .onDisappear { self.kGuardian.removeObserver() }
     }

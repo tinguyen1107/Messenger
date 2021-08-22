@@ -20,9 +20,11 @@ final class DefaultController: ObservableObject {
         manager.defaultSocket
     }
     
+    var cls_Conservation: (()->Void)?
+    
     @Published var user = emptyUser
     @Published var friends: [User] = []
-    @Published var messages: Dictionary<String, [String]> = [:]
+    @Published var messages: [String: [String]] = [:]
     
     init() {
         socketListening()
@@ -33,27 +35,34 @@ final class DefaultController: ObservableObject {
             print ("Socket connected")
         }
         
-//        socket.on("receive_message") { [weak self] (data, ack) in
-//            if let data = data[0] as? [String: String],
-//               let rawMessage = data["message"] {
-//                DispatchQueue.main.async {
-////                    MessageSupport().decodeMessage(userId: <#T##String#>, message: T##String)
-//
-////                    self?.messages.append(rawMessage)
-//                }
-//            }
-//        }
-//
+        socket.on("receive_message") { (data, ack) in
+            if let rawMessage = data[0] as? String
+//               let rawMessage = data["message"]
+            {
+                DispatchQueue.main.async { [self] in
+                    let result = MessageSupport().decodeMessage(self_userId: user._id, message: rawMessage)
+                    if result[0] != "user" {
+                        if let _ = messages[result[0]] {
+                            messages[result[0]]!.append(rawMessage)
+                        } else {
+                            messages[result[0]] = [rawMessage]
+                        }
+                        
+                    }
+                }
+            }
+        }
+
+        socket.on("respone_create_conservation") { data, ack in
+            self.cls_Conservation!()
+        }
         socket.on("someone_create_consevation_receive") { data, ack in
-            let newFriend = try! JSONDecoder().decode(User.self, from: data[0] as! Data)
+            let final = try! JSONSerialization.data(withJSONObject: data[0] as Any)
+            let newFriend = try! JSONDecoder().decode(User.self, from: final)
             DispatchQueue.main.async {
                 self.friends.append(newFriend)
             }
         }
-//
-//        socket.on("respone_create_conservation") { data, ack in
-//            <#code#>
-//        }
     }
     
     func connect (user: User) {
@@ -63,18 +72,19 @@ final class DefaultController: ObservableObject {
         socket.connect(withPayload: final)
     }
     
-    func addFriend (newFriend: User) {
-        socket.on("respone_create_conservation") { data, ack in
+    func addFriend (newFriend: User, completion: @escaping (Bool)->()) {
+        cls_Conservation = {
             DispatchQueue.main.async {
                 self.friends.append(newFriend)
+                completion(true)
             }
         }
         
-        socket.emit("create_conservation_submit", newFriend._id!)
+        socket.emit("create_conservation_submit", newFriend._id)
     }
     
     func sendMessage (content: String, toId: String) {
-        socket.emit("send_messsage", MessageSupport().encodeMessage(userId: self.user._id!, message: content))
+        socket.emit("send_messsage", MessageSupport().encodeMessage(userId: toId, message: content))
     }
     
     func disconnect () { socket.disconnect() }

@@ -44,7 +44,7 @@ struct ListUser: View {
     }
     
     func searchFor (key: String)->[User] {
-        return listUser.filter({ $0.fullname.contains(searchKey) || searchKey == ""})
+        return listUser.filter({$0._id != services.user._id}).filter({ $0.fullname.contains(searchKey) || searchKey == ""})
     }
 }
 

@@ -20,7 +20,11 @@ function route(app) {
     })
     res.json(message)
   })
-
+app.get('/', function(req, res) {
+  res.json({
+    "messenger": "?? sao v"
+  })
+})
   app.post("/login", UserController.login);
   app.post("/register", UserController.register);
   

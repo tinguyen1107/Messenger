@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct Message: View {
-    @Binding var message: [String]
+    var message: [String]
     
     var body: some View {
         let isUserSend = message[0] == "user"
@@ -38,16 +38,11 @@ struct ChatView: View {
     @State private var isTyping: Bool = false
     @State private var listMessages: [[String]] = []
     
-//    init (user: User, friend: User) {
-//        self.user = user
-//        self.friend = friend
-//    }
-
     var body: some View {
         VStack {
             ScrollView {
-                ForEach (listMessages.indices, id: \.self) { index in
-                    Message(message: $listMessages[index])
+                ForEach ((services.messages[friend._id] ?? []).indices, id: \.self) { index in
+                    Message(message: MessageSupport().decodeMessage(self_userId: services.user._id, message: services.messages[friend._id]![index]))
                 }.padding(.top, 5)
             }
             
@@ -84,10 +79,10 @@ struct ChatView: View {
                     Button(action: {
                         isTyping = false
                         if (message != "") {
-                            listMessages.append(["user", message])
+                            services.messages[friend._id]!.append(services.user._id + "_" + message)
                         }
+                        services.sendMessage(content: message, toId: friend._id)
                         message = ""
-                        
                         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
                     }, label: {
                         Text(message != "" ? "Send" : "Close")
@@ -99,11 +94,13 @@ struct ChatView: View {
                 }
             }
             .onAppear {
-                Alamofire().getPreviousMessages(fromId: services.user._id!, toId: friend._id!, complete: { result, messages in
-                    if result == 0 {
-                        listMessages = messages!
-                    }
-                })
+                if let _ = services.messages[friend._id] {}else {
+                    Alamofire().getPreviousMessages(fromId: services.user._id, toId: friend._id, complete: { result, messages in
+                        if result == 0 {
+                            services.messages[friend._id] = messages!
+                        }
+                    })
+                }
             }
             .transition(.move(edge: .trailing))
             .animation(.default)
@@ -116,6 +113,6 @@ struct ChatView: View {
 
 struct ChatView_Previews: PreviewProvider {
     static var previews: some View {
-        ChatView(friend: User(_id: nil, email: "abc@gmail.com", password: "", fullname: "Noo"))
+        ChatView(friend: User(_id: "", email: "abc@gmail.com", password: "", fullname: "Noo"))
     }
 }

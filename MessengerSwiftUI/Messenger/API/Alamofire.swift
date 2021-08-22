@@ -9,7 +9,7 @@ import Foundation
 import Alamofire
 import SwiftUI
 
-let BaseURL = "http://192.168.1.101:7000"
+let BaseURL = "http://192.168.1.102:7000"
 
 extension UIApplication {
     func endEditing() {
@@ -42,7 +42,7 @@ struct Alamofire {
             }
     }
     
-    func getAllUsersWithConservation (fromId: String, complete: @escaping (Int, [User]?)->()) {
+    func getAllFriends (fromId: String, complete: @escaping (Int, [User]?)->()) {
         let url = BaseURL + "/conservation/get_all_friends"
         let params: Parameters = [ "id": fromId ]
         
@@ -91,7 +91,7 @@ struct Alamofire {
             }
     }
     
-    func getPreviousMessages(fromId: String, toId: String, complete: @escaping (Int, [[String]]?)->()) {
+    func getPreviousMessages(fromId: String, toId: String, complete: @escaping (Int, [String]?)->()) {
         let url = BaseURL + "/conservation/get_messages"
         let params: Parameters = [ "ids": [fromId, toId] ]
         
@@ -107,8 +107,8 @@ struct Alamofire {
                         else {
                             let final = try! JSONSerialization.data(withJSONObject: data["details"]!)
                             let messages = try! JSONDecoder().decode([String].self, from: final)
-                            let listMessages = messages.map { MessageSupport().decodeMessage(userId: fromId, message: $0) }
-                            complete(result, listMessages)
+//                            let listMessages = messages.map { MessageSupport().decodeMessage(self_userId: fromId, message: $0) }
+                            complete(result, messages)
                         }
                     }
                 case .failure(let error):

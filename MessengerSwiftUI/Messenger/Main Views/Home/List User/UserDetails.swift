@@ -10,6 +10,8 @@ import SwiftUI
 struct UserDetails: View {
     @EnvironmentObject var services: DefaultController
     
+    @State private var selectedShow: AlertContent?
+    
     var user: User
     var content: [[String]] {
         [
@@ -23,31 +25,37 @@ struct UserDetails: View {
             Image("turtlerock_feature").resizable()
                 .frame(maxWidth: UIScreen.main.bounds.width)
                 .frame(height: UIScreen.main.bounds.height / 3)
-
+            
             CircleImage(image: Image("rainbowlake"))
                 .offset(y: -130)
                 .padding(.bottom, -130)
-
+            
             VStack(alignment: .leading) {
                 HStack {
                     Text("Information")
                         .font(.title)
                     
                     Spacer()
-                    
-                    Button (action: {
-                        services.addFriend(newFriend: user)
-                    }, label: {
-                        HStack {
-                            Image(systemName: "plus")
-                            Text("Add friend")
-                        }
-                        .padding(7)
-                        .background(Color(.systemGray4))
-                        .cornerRadius(9)
-                    })
+                    if !services.friends.contains(user) {
+                        Button (action: {
+                            services.addFriend(newFriend: user) {
+                                let title = $0 ? "Successed" : "Failed"
+                                let description = $0 ? "Now you and \(user.fullname) are friend" : "Please try again. Server is have some wrong."
+                                selectedShow = AlertContent(title: title, description: description, dismiss: true)
+                            }
+                            selectedShow = AlertContent(title: "Handling", description: nil, dismiss: false)
+                        }, label: {
+                            HStack {
+                                Image(systemName: "plus")
+                                Text("Add friend")
+                            }
+                            .padding(7)
+                            .background(Color(.systemGray4))
+                            .cornerRadius(9)
+                        })
+                    }
                 }
-
+                
                 ForEach(content, id: \.self) { content in
                     Divider()
                     HStack (alignment: .top) {
@@ -66,6 +74,22 @@ struct UserDetails: View {
                 Divider()
             }
             .padding(.horizontal)
+        }
+        .alert(item: $selectedShow) { show in
+            var alert: Alert
+            if show.dismiss {
+                alert = Alert(
+                    title: Text(show.title),
+                    message: Text(show.description ?? ""),
+                    dismissButton: .cancel()
+                )
+            } else {
+                alert = Alert(
+                    title: Text(show.title),
+                    message: Text(show.description ?? "")
+                )
+            }
+            return alert
         }
         .ignoresSafeArea(edges: .top)
     }

@@ -10,10 +10,13 @@ import SwiftUI
 struct AlertContent: Identifiable {
     var id: String { title }
     let title: String
-    let description: String
+    let description: String?
+    let dismiss: Bool
 }
 
 struct LoginView: View {
+    @State private var isLogin: Bool = false
+    
     var body: some View {
         NavigationView {
             VStack (alignment: .leading) {
@@ -25,7 +28,7 @@ struct LoginView: View {
                             .foregroundColor(Color(#colorLiteral(red: 0.1411764771, green: 0.3960784376, blue: 0.5647059083, alpha: 1)))
                             .lineLimit(1)
                         Text("Welcome to messenger!\nLet say something to your friend!")
-                            .font(.system(size: 18, weight: .regular, design: .rounded))
+                            .font(.system(size: 18, weight: .medium, design: .rounded))
                             .foregroundColor(Color(#colorLiteral(red: 0.180785032, green: 0.5511000946, blue: 0.8088557696, alpha: 1)))
                             .lineLimit(2)
                             .padding(.top, 2)
@@ -35,11 +38,15 @@ struct LoginView: View {
                 }
                 .frame(maxWidth: UIScreen.main.bounds.width)
                 Spacer()
-                ZStack {
-                    Wave(strength: 20, frequency: 10)
-                        .frame(height: UIScreen.main.bounds.height*0.6)
-                    InputView()
-                        .padding(.horizontal, 20)
+                if isLogin {
+                    ZStack {
+                        Wave(strength: 20, frequency: 10)
+                            .frame(height: UIScreen.main.bounds.height*0.6)
+                        InputView()
+                            .padding(.horizontal, 20)
+                    }
+                    .transition(.move(edge: .bottom))
+                    .animation(.linear)
                 }
             }
             .background(
@@ -51,17 +58,12 @@ struct LoginView: View {
             )
             .ignoresSafeArea()
             .animation(.default)
+            .onAppear {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                    isLogin = true
+                }
+            }
         }
-    }
-}
-
-struct OvalTextFieldStyle: TextFieldStyle {
-    func _body(configuration: TextField<Self._Label>) -> some View {
-        configuration
-            .padding(10)
-            .background(LinearGradient(gradient: Gradient(colors: [Color.orange, Color.orange]), startPoint: .topLeading, endPoint: .bottomTrailing))
-            .cornerRadius(20)
-            .shadow(color: .gray, radius: 10)
     }
 }
 

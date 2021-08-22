@@ -26,7 +26,10 @@ struct ListFriendView: View {
                 NavigationLink(destination: ChatView(friend: choosenUser), tag: "UserView", selection: $selected) { EmptyView() }
                 
                 SearchBar(searchKey: $searchKey, isSearching: $isSearching)
-                ForEach (services.friends.filter({ $0.fullname.contains(searchKey) || searchKey == ""}), id: \.self) { friend in
+                ForEach (
+                    services.friends.filter({ $0.fullname.contains(searchKey) || searchKey == ""}),
+                    id: \.self
+                ) { friend in
                     Button  {
                         choosenUser = friend
                         self.selected = "ChatView"
@@ -34,10 +37,11 @@ struct ListFriendView: View {
                         SimpleCard(name: friend.fullname)
                     }
                 }
+                
             }
             .onAppear {
                 if services.friends == [] {
-                    Alamofire().getAllUsersWithConservation(fromId: services.user._id!, complete: { result, friends in
+                    Alamofire().getAllFriends(fromId: services.user._id, complete: { result, friends in
                         if result == 0 {
                             self.services.friends = friends!
                         }

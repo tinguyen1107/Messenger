@@ -8,17 +8,19 @@
 import SwiftUI
 
 struct SimpleButton: ButtonStyle {
-    var color: Color
+    var color: Color = Color(#colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1))
+    var textColor: Color = Color(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1))
     
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .frame(height: 35)
             .frame(maxWidth: .infinity)
             .background(color)
-            .foregroundColor(.white)
+            .foregroundColor(textColor)
             .scaleEffect(configuration.isPressed ? 1.2 : 1)
             .animation(.easeOut(duration: 0.2), value: configuration.isPressed)
             .cornerRadius(30)
+            .font(.system(size: 18, weight: .semibold, design: .rounded))
     }
 }
 

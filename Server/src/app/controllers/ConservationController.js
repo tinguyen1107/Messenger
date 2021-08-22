@@ -66,7 +66,6 @@ class ConservationController {
                             httpSupport.resultResJson(res, 0, users);
                         })
                         .catch(next)
-                    
                 }
             })
             .catch(next)

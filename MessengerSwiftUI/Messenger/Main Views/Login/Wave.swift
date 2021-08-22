@@ -21,12 +21,12 @@ struct Wave: View {
             path(in: CGRect(x: 0, y: 0, width: geometry.size.width, height: geometry.size.height), delta: 5.5)
                 .fill(
                     LinearGradient(
-                        gradient: Gradient(colors: [Color(#colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)), Color(#colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0))]),
-                        startPoint: .bottom, endPoint: .top
+                        gradient: Gradient(colors: [Color(#colorLiteral(red: 0.9098039269, green: 0.5440593703, blue: 0.6672541601, alpha: 1)), Color(#colorLiteral(red: 0.9568627477, green: 0.7420363468, blue: 0.6286631694, alpha: 1)), Color(#colorLiteral(red: 0.9764705896, green: 0.850980401, blue: 0.5490196347, alpha: 1))]),
+                        startPoint: .leading, endPoint: .trailing
                     )
-                )
+                ).opacity(0.9)
             path(in: CGRect(x: 0, y: 0, width: geometry.size.width, height: geometry.size.height), delta: 4.5)
-                .fill(Color(.white))
+                .fill(Color(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.8974785205)))
             
         }
         .onReceive(timer, perform: { _ in

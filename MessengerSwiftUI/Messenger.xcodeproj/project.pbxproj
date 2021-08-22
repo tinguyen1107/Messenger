@@ -118,8 +118,8 @@
 			isa = PBXGroup;
 			children = (
 				A3481C9926C52E9900E9C6FB /* Info User */,
-				A36EFE4A26C5206900382578 /* List User */,
 				A36EFE4726C51D8900382578 /* List Friend */,
+				A36EFE4A26C5206900382578 /* List User */,
 				A3481C9C26C52EDD00E9C6FB /* Setting View */,
 				A327D5AA26C42B5C0048E9E4 /* HomeView.swift */,
 			);
