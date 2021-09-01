@@ -9,7 +9,6 @@ var io = require("socket.io")(server);
 require ("./socket/mainSocket")(io);
 
 server.listen(7000);
-
 // Mongoose
 const mongoose = require("mongoose");
 mongoose.connect(
@@ -29,6 +28,7 @@ mongoose.connect(
 )
 
 var bodyParser = require("body-parser");
-app.use(bodyParser.urlencoded({extend: false}))
+
+app.use(bodyParser.urlencoded({extend: false}));
 
 require("./routes/route")(app);

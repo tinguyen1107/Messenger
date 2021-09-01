@@ -78,7 +78,13 @@ class UserController {
 			httpSupport.resultResJson(res, 0, "error");
 		})
 	}
-
+    
+    editInfo (req, res, next) {
+        console.log(`This is the image file ${req.file}`);
+        res.json({
+            "message": "Send successfully",
+        })
+    }
 }
 
 module.exports = new UserController();

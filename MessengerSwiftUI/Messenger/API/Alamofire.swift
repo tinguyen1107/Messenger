@@ -107,7 +107,6 @@ struct Alamofire {
                         else {
                             let final = try! JSONSerialization.data(withJSONObject: data["details"]!)
                             let messages = try! JSONDecoder().decode([String].self, from: final)
-//                            let listMessages = messages.map { MessageSupport().decodeMessage(self_userId: fromId, message: $0) }
                             complete(result, messages)
                         }
                     }

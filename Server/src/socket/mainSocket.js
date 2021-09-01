@@ -29,6 +29,32 @@ module.exports =  function(io) {
                 users_id: [socket.user._id, newFriend_id],
             })
             conservation.address = conservation._id.toString();
+            
+            socket.on("respone_ask_create_conservation", (data) => {
+                if (data) {
+                    conservation.save(function(error) {
+                        if (!error) {
+                            var message = new Message({
+                                address: conservation._id.toString(),
+                                messages: [],
+                            })
+
+                            message.save(function(error) {
+                                if (!error) {
+                                    console.log("CREATE__conservation__SUCCESSFULLY")
+
+                                    socket.emit("respone_create_conservation", socket.user)
+                                }
+                            })
+                        }
+                    })
+                }
+            })
+
+            socket.to(newFriend_id).emit("someone_create_consevation_receive", socket.user)
+
+
+
             conservation.save(function(error) { 
                 if (!error) {
                     var message = new Message({

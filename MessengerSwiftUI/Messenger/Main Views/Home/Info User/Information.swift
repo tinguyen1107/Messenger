@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct Information: View {
-    var user: User
+    @EnvironmentObject var services: DefaultController
     
     var content: [[String]] {
         [
-            ["Email", user.email],
-            ["Full name", user.fullname],
+            ["Email", services.user.email],
+            ["Full name", services.user.fullname],
         ]
     }
     
@@ -66,6 +66,7 @@ struct Information: View {
 
 struct Information_Previews: PreviewProvider {
     static var previews: some View {
-        Information(user: User(_id: "", email: "nttin@gmail.com", password: "", fullname: "Nguyen Trong Tin"))
+        Information()
+            .environmentObject(DefaultController())
     }
 }
