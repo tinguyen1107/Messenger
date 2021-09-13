@@ -8,12 +8,13 @@
 import SwiftUI
 
 struct Information: View {
-    @EnvironmentObject var services: DefaultController
+    var user: User
+    var avatar: UIImage
     
     var content: [[String]] {
         [
-            ["Email", services.user.email],
-            ["Full name", services.user.fullname],
+            ["Email", user.email],
+            ["Full name", user.fullname],
         ]
     }
     
@@ -23,14 +24,16 @@ struct Information: View {
                 .frame(maxWidth: UIScreen.main.bounds.width)
                 .frame(height: UIScreen.main.bounds.height / 3)
 
-            CircleImage(image: Image("rainbowlake"))
-                .offset(y: -130)
-                .padding(.bottom, -130)
+            CircleImage(image: Image(uiImage: avatar))
+                .frame(width: 200, height: 200) 
+                .offset(y: -100)
+                .padding(.bottom, -115)
+                
 
             VStack(alignment: .leading) {
                 HStack {
                     Text("Information")
-                        .font(.title)
+                        .font(.title2)
                     
                     Spacer()
                     
@@ -64,9 +67,9 @@ struct Information: View {
     }
 }
 
-struct Information_Previews: PreviewProvider {
-    static var previews: some View {
-        Information()
-            .environmentObject(DefaultController())
-    }
-}
+//struct Information_Previews: PreviewProvider {
+//    static var previews: some View {
+//        Information(user: emptyUser)
+//            .environmentObject(DefaultController())
+//    }
+//}

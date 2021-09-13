@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A31138B326E107D500CB4E2C /* Infomation_Edit.swift in Sources */ = {isa = PBXBuildFile; fileRef = A31138B226E107D500CB4E2C /* Infomation_Edit.swift */; };
+		A31138B526E1086F00CB4E2C /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A31138B426E1086F00CB4E2C /* ImagePicker.swift */; };
+		A31138B726E10D3800CB4E2C /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = A31138B626E10D3800CB4E2C /* Font.swift */; };
 		A32430FD26CEA4CC00A81853 /* Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32430FC26CEA4CC00A81853 /* Keyboard.swift */; };
 		A327276D26CE36040033B075 /* Wave.swift in Sources */ = {isa = PBXBuildFile; fileRef = A327276C26CE36040033B075 /* Wave.swift */; };
 		A327D5AB26C42B5C0048E9E4 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A327D5AA26C42B5C0048E9E4 /* HomeView.swift */; };
@@ -17,20 +20,21 @@
 		A3481C9E26C52EEC00E9C6FB /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3481C9D26C52EEC00E9C6FB /* SettingView.swift */; };
 		A3481CA026C55C0300E9C6FB /* Information.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3481C9F26C55C0300E9C6FB /* Information.swift */; };
 		A3481CA426C597B000E9C6FB /* UserDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3481CA326C597B000E9C6FB /* UserDetails.swift */; };
-		A3481CA726C5DB2900E9C6FB /* SocketIO in Frameworks */ = {isa = PBXBuildFile; productRef = A3481CA626C5DB2900E9C6FB /* SocketIO */; };
 		A3481CA926C5DC0500E9C6FB /* SocketIO.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3481CA826C5DC0500E9C6FB /* SocketIO.swift */; };
 		A3481CAD26C63A0B00E9C6FB /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3481CAC26C63A0B00E9C6FB /* User.swift */; };
 		A36EFE4926C51F1200382578 /* ListFriendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36EFE4826C51F1200382578 /* ListFriendView.swift */; };
+		A3ADB17026EB4A9F00728DF6 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = A3ADB16F26EB4A9F00728DF6 /* Alamofire */; };
+		A3ADB17226EB4AA300728DF6 /* SocketIO in Frameworks */ = {isa = PBXBuildFile; productRef = A3ADB17126EB4AA300728DF6 /* SocketIO */; };
 		A3B42EA126BEDD62008DA684 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B42EA026BEDD62008DA684 /* CustomButton.swift */; };
 		A3C4845526C238B90037389D /* Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C4845426C238B90037389D /* Alamofire.swift */; };
-		A3C4845826C23BCC0037389D /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = A3C4845726C23BCC0037389D /* Alamofire */; };
 		A3C4845F26C2C0D30037389D /* ListUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C4845E26C2C0D30037389D /* ListUser.swift */; };
+		A3C90C2726ED157A00777EE8 /* View_EXT.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C90C2626ED157A00777EE8 /* View_EXT.swift */; };
 		A3D72A4426BECB1C00332E44 /* MessengerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D72A4326BECB1C00332E44 /* MessengerApp.swift */; };
 		A3D72A4626BECB1C00332E44 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D72A4526BECB1C00332E44 /* ContentView.swift */; };
 		A3D72A4826BECB1D00332E44 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A3D72A4726BECB1D00332E44 /* Assets.xcassets */; };
 		A3D72A4B26BECB1D00332E44 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A3D72A4A26BECB1D00332E44 /* Preview Assets.xcassets */; };
-		A3D72A7026BECBCE00332E44 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D72A6F26BECBCE00332E44 /* LoginView.swift */; };
-		A3EC58C926CE716A00150093 /* InputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3EC58C826CE716A00150093 /* InputView.swift */; };
+		A3D72A7026BECBCE00332E44 /* AuthenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D72A6F26BECBCE00332E44 /* AuthenView.swift */; };
+		A3EC58C926CE716A00150093 /* AuthenForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3EC58C826CE716A00150093 /* AuthenForm.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +55,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A31138B226E107D500CB4E2C /* Infomation_Edit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Infomation_Edit.swift; sourceTree = "<group>"; };
+		A31138B426E1086F00CB4E2C /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		A31138B626E10D3800CB4E2C /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
 		A32430FC26CEA4CC00A81853 /* Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keyboard.swift; sourceTree = "<group>"; };
 		A327276C26CE36040033B075 /* Wave.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wave.swift; sourceTree = "<group>"; };
 		A327D5AA26C42B5C0048E9E4 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -67,6 +74,7 @@
 		A3B42EA026BEDD62008DA684 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		A3C4845426C238B90037389D /* Alamofire.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alamofire.swift; sourceTree = "<group>"; };
 		A3C4845E26C2C0D30037389D /* ListUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListUser.swift; sourceTree = "<group>"; };
+		A3C90C2626ED157A00777EE8 /* View_EXT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View_EXT.swift; sourceTree = "<group>"; };
 		A3D72A4026BECB1C00332E44 /* Messenger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Messenger.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3D72A4326BECB1C00332E44 /* MessengerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessengerApp.swift; sourceTree = "<group>"; };
 		A3D72A4526BECB1C00332E44 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -75,8 +83,8 @@
 		A3D72A4C26BECB1D00332E44 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A3D72A5126BECB1D00332E44 /* MessengerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MessengerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3D72A5C26BECB1D00332E44 /* MessengerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MessengerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		A3D72A6F26BECBCE00332E44 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
-		A3EC58C826CE716A00150093 /* InputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputView.swift; sourceTree = "<group>"; };
+		A3D72A6F26BECBCE00332E44 /* AuthenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenView.swift; sourceTree = "<group>"; };
+		A3EC58C826CE716A00150093 /* AuthenForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenForm.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,8 +92,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A3C4845826C23BCC0037389D /* Alamofire in Frameworks */,
-				A3481CA726C5DB2900E9C6FB /* SocketIO in Frameworks */,
+				A3ADB17026EB4A9F00728DF6 /* Alamofire in Frameworks */,
+				A3ADB17226EB4AA300728DF6 /* SocketIO in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -110,6 +118,9 @@
 			isa = PBXGroup;
 			children = (
 				A32430FC26CEA4CC00A81853 /* Keyboard.swift */,
+				A31138B426E1086F00CB4E2C /* ImagePicker.swift */,
+				A31138B626E10D3800CB4E2C /* Font.swift */,
+				A3C90C2626ED157A00777EE8 /* View_EXT.swift */,
 			);
 			path = Helps;
 			sourceTree = "<group>";
@@ -138,7 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				A3D72A4526BECB1C00332E44 /* ContentView.swift */,
-				A3D72A6E26BECB9C00332E44 /* Login */,
+				A3D72A6E26BECB9C00332E44 /* Authen */,
 				A327D5AC26C42D580048E9E4 /* Home */,
 				A327D5B126C450B00048E9E4 /* Chat */,
 			);
@@ -150,6 +161,7 @@
 			children = (
 				A3481C9A26C52EB300E9C6FB /* InfoView.swift */,
 				A3481C9F26C55C0300E9C6FB /* Information.swift */,
+				A31138B226E107D500CB4E2C /* Infomation_Edit.swift */,
 			);
 			path = "Info User";
 			sourceTree = "<group>";
@@ -196,9 +208,17 @@
 			path = "List User";
 			sourceTree = "<group>";
 		};
+		A3ADB16E26EB4A9F00728DF6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		A3B42E9F26BEDD4E008DA684 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
+				A327276C26CE36040033B075 /* Wave.swift */,
 				A327D5AF26C444E00048E9E4 /* SearchBar.swift */,
 				A327D5AD26C42D8B0048E9E4 /* SimpleCard.swift */,
 				A3B42EA026BEDD62008DA684 /* CustomButton.swift */,
@@ -211,6 +231,7 @@
 			children = (
 				A3D72A4226BECB1C00332E44 /* Messenger */,
 				A3D72A4126BECB1C00332E44 /* Products */,
+				A3ADB16E26EB4A9F00728DF6 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -248,14 +269,13 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		A3D72A6E26BECB9C00332E44 /* Login */ = {
+		A3D72A6E26BECB9C00332E44 /* Authen */ = {
 			isa = PBXGroup;
 			children = (
-				A327276C26CE36040033B075 /* Wave.swift */,
-				A3EC58C826CE716A00150093 /* InputView.swift */,
-				A3D72A6F26BECBCE00332E44 /* LoginView.swift */,
+				A3EC58C826CE716A00150093 /* AuthenForm.swift */,
+				A3D72A6F26BECBCE00332E44 /* AuthenView.swift */,
 			);
-			path = Login;
+			path = Authen;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -275,8 +295,8 @@
 			);
 			name = Messenger;
 			packageProductDependencies = (
-				A3C4845726C23BCC0037389D /* Alamofire */,
-				A3481CA626C5DB2900E9C6FB /* SocketIO */,
+				A3ADB16F26EB4A9F00728DF6 /* Alamofire */,
+				A3ADB17126EB4AA300728DF6 /* SocketIO */,
 			);
 			productName = Messenger;
 			productReference = A3D72A4026BECB1C00332E44 /* Messenger.app */;
@@ -398,20 +418,24 @@
 				A327D5AB26C42B5C0048E9E4 /* HomeView.swift in Sources */,
 				A3C4845526C238B90037389D /* Alamofire.swift in Sources */,
 				A32430FD26CEA4CC00A81853 /* Keyboard.swift in Sources */,
-				A3D72A7026BECBCE00332E44 /* LoginView.swift in Sources */,
+				A31138B726E10D3800CB4E2C /* Font.swift in Sources */,
+				A3D72A7026BECBCE00332E44 /* AuthenView.swift in Sources */,
 				A327D5B426C450D40048E9E4 /* ChatView.swift in Sources */,
 				A327276D26CE36040033B075 /* Wave.swift in Sources */,
 				A3481C9B26C52EB300E9C6FB /* InfoView.swift in Sources */,
+				A31138B526E1086F00CB4E2C /* ImagePicker.swift in Sources */,
 				A327D5AE26C42D8B0048E9E4 /* SimpleCard.swift in Sources */,
 				A36EFE4926C51F1200382578 /* ListFriendView.swift in Sources */,
 				A3481CAD26C63A0B00E9C6FB /* User.swift in Sources */,
+				A31138B326E107D500CB4E2C /* Infomation_Edit.swift in Sources */,
 				A3D72A4626BECB1C00332E44 /* ContentView.swift in Sources */,
 				A3481CA026C55C0300E9C6FB /* Information.swift in Sources */,
 				A3481C9E26C52EEC00E9C6FB /* SettingView.swift in Sources */,
-				A3EC58C926CE716A00150093 /* InputView.swift in Sources */,
+				A3EC58C926CE716A00150093 /* AuthenForm.swift in Sources */,
 				A3481CA926C5DC0500E9C6FB /* SocketIO.swift in Sources */,
 				A3D72A4426BECB1C00332E44 /* MessengerApp.swift in Sources */,
 				A3B42EA126BEDD62008DA684 /* CustomButton.swift in Sources */,
+				A3C90C2726ED157A00777EE8 /* View_EXT.swift in Sources */,
 				A3C4845F26C2C0D30037389D /* ListUser.swift in Sources */,
 				A327D5B026C444E00048E9E4 /* SearchBar.swift in Sources */,
 				A3481CA426C597B000E9C6FB /* UserDetails.swift in Sources */,
@@ -753,15 +777,15 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		A3481CA626C5DB2900E9C6FB /* SocketIO */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = A3481CA526C5DB2900E9C6FB /* XCRemoteSwiftPackageReference "socket.io-client-swift" */;
-			productName = SocketIO;
-		};
-		A3C4845726C23BCC0037389D /* Alamofire */ = {
+		A3ADB16F26EB4A9F00728DF6 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = A3C4845626C23BCC0037389D /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		A3ADB17126EB4AA300728DF6 /* SocketIO */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A3481CA526C5DB2900E9C6FB /* XCRemoteSwiftPackageReference "socket.io-client-swift" */;
+			productName = SocketIO;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

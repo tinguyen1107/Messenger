@@ -34,13 +34,19 @@ struct ListUser: View {
                 }
             }
             .onAppear {
-                Alamofire().getAllUsers(complete: { result, details in
-                    if result == 0 {
-                        self.listUser = details!
-                    }
-                })
+                setupData()
             }
         }
+    }
+}
+
+extension ListUser {
+    func setupData() {
+        Alamofire().getAllUsers(complete: { result, details in
+            if result == 0 {
+                self.listUser = details!
+            }
+        })
     }
     
     func searchFor (key: String)->[User] {

@@ -11,23 +11,21 @@ struct SettingView: View {
     @Environment(\.presentationMode) var presentation
     
     var body: some View {
-//        VStack {
-            ScrollView {
-                Button(action: {
-                    self.presentation.wrappedValue.dismiss()
-                }, label: {
-                    HStack {
-                        Text("Log out")
-                    }
-                    .padding(.vertical, 8)
-                    .frame(maxWidth: UIScreen.main.bounds.width)
-                    .background(Color(.systemGray5))
-                    .cornerRadius(9)
-                    .padding(.horizontal)
-                })
-                .padding(.vertical, 10)
-            }
-//        }
+        ScrollView {
+            Button(action: {
+                self.presentation.wrappedValue.dismiss()
+            }, label: {
+                HStack {
+                    Text("Log out")
+                }
+                .padding(.vertical, 8)
+                .frame(maxWidth: UIScreen.main.bounds.width)
+                .background(Color(.systemGray5))
+                .cornerRadius(9)
+                .padding(.horizontal)
+            })
+            .padding(.vertical, 10)
+        }
     }
 }
 

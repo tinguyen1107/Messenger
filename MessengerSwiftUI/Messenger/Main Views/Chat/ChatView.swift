@@ -110,9 +110,9 @@ struct ChatView: View {
         .navigationBarColor(.lightGray)
     }
 }
-
-struct ChatView_Previews: PreviewProvider {
-    static var previews: some View {
-        ChatView(friend: User(_id: "", email: "abc@gmail.com", password: "", fullname: "Noo"))
-    }
-}
+//
+//struct ChatView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ChatView(friend: User(_id: "", email: "abc@gmail.com", password: "", fullname: "Noo"))
+//    }
+//}

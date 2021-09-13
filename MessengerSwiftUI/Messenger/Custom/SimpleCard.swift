@@ -18,7 +18,7 @@ struct SimpleCard: View {
             Text(name)
                 .foregroundColor(.black)
                 .padding(.leading, 10)
-                .font(.title3)
+                .font(.caption)
             Spacer()
         }
         .padding(.vertical, 10)
@@ -31,6 +31,8 @@ struct CircleImage: View {
     
     var body: some View {
         image
+            .resizable()
+            .scaleEffect()
             .clipShape(Circle())
             .overlay(Circle().stroke(Color.gray, lineWidth: 4.0))
             .shadow(radius: 7)

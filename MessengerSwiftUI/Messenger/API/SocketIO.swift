@@ -10,7 +10,7 @@ import SocketIO
 
 //let manager = SocketManager(socketURL: URL(string: BaseURL)!, config: [.log(true), .compress])
 //let socket = manager.defaultSocket
-let emptyUser = User (_id: "", email: "", password: "", fullname: "")
+let emptyUser = User (_id: "", email: "", password: "", fullname: "", avatar: "default", token: "")
 
 final class DefaultController: ObservableObject {
     
@@ -28,6 +28,7 @@ final class DefaultController: ObservableObject {
     
     init() {
         socketListening()
+        
     }
     
     func socketListening () {
@@ -36,9 +37,7 @@ final class DefaultController: ObservableObject {
         }
         
         socket.on("receive_message") { (data, ack) in
-            if let rawMessage = data[0] as? String
-//               let rawMessage = data["message"]
-            {
+            if let rawMessage = data[0] as? String {
                 DispatchQueue.main.async { [self] in
                     let result = MessageSupport().decodeMessage(self_userId: user._id, message: rawMessage)
                     if result[0] != "user" {
@@ -47,7 +46,6 @@ final class DefaultController: ObservableObject {
                         } else {
                             messages[result[0]] = [rawMessage]
                         }
-                        
                     }
                 }
             }

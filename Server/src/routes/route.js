@@ -1,38 +1,39 @@
 const User = require("../app/models/User");
-const Message = require("../app/models/Message")
+const Message = require("../app/models/Message");
 const UserController = require("../app/controllers/UserController");
 const ConservationController = require("../app/controllers/ConservationController");
-const MessageController = require("../app/controllers/MessageController")
+const MessageController = require("../app/controllers/MessageController");
 
-const multer = require('multer')
+const uploadAvatar = require("../middleware/upload");
+const verifyToken = require("../middleware/verifyToken");
 
-const storage = multer.diskStorage({
-    destination: function(req, file, cb) {
-        cb(null, './uploads');
-    },
-    filename: function(req, file, cb) {
-        cb(null, new Date().toISOString() + file.originalname);
-    }
-})
+const express = require("express");
+const router = express.Router();
 
-const upload = multer({storage: storage})
+router.get("/", function (req, res) {
+  res.json({
+    hello: "world",
+  });
+});
+router.post("/login", verifyToken, UserController.login);
+router.post("/register", UserController.register);
 
-function route(app) {
-    app.get('/', function(req, res) {
-        res.json({
-            "messenger": "?? sao v"
-        })
-    })
-    app.post("/login", UserController.login);
-    app.post("/register", UserController.register);
-  
-    app.get("/get_all_users", UserController.getAllUsers);
+router.get("/get_all_users", UserController.getAllUsers);
 
-  // app.post("/conservation/create_new_conservation", ConservationController.createNewConservation);
-    app.post("/conservation/get_all_friends", ConservationController.getListConservations);
-    app.post("/conservation/get_messages", ConservationController.getPreviousMessages);
+// app.post("/conservation/create_new_conservation", ConservationController.createNewConservation);
+router.post(
+  "/conservation/get_all_friends",
+  ConservationController.getListConservations
+);
+router.post(
+  "/conservation/get_messages",
+  ConservationController.getPreviousMessages
+);
 
-    app.post("/user/info/edit", upload.single('avatar'), UserController.editInfo)
-}
+router.post(
+  "/user/info/edit",
+  uploadAvatar.single("avatar"),
+  UserController.editInfo
+);
 
-module.exports = route;
+module.exports = router;

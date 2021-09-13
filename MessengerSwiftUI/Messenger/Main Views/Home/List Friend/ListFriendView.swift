@@ -26,10 +26,7 @@ struct ListFriendView: View {
                 NavigationLink(destination: ChatView(friend: choosenUser), tag: "UserView", selection: $selected) { EmptyView() }
                 
                 SearchBar(searchKey: $searchKey, isSearching: $isSearching)
-                ForEach (
-                    services.friends.filter({ $0.fullname.contains(searchKey) || searchKey == ""}),
-                    id: \.self
-                ) { friend in
+                ForEach (searchFor(key: searchKey), id: \.self) { friend in
                     Button  {
                         choosenUser = friend
                         self.selected = "ChatView"
@@ -40,15 +37,25 @@ struct ListFriendView: View {
                 
             }
             .onAppear {
-                if services.friends == [] {
-                    Alamofire().getAllFriends(fromId: services.user._id, complete: { result, friends in
-                        if result == 0 {
-                            self.services.friends = friends!
-                        }
-                    })
-                }
+                setupData()
             }
         }
+    }
+}
+
+extension ListFriendView {
+    func setupData() {
+        if services.friends == [] {
+            Alamofire().getAllFriends(fromId: services.user._id, complete: { result, friends in
+                if result == 0 {
+                    self.services.friends = friends!
+                }
+            })
+        }
+    }
+    
+    func searchFor (key: String)->[User] {
+        return services.friends.filter({ $0.fullname.contains(searchKey) || searchKey == ""})
     }
 }
 

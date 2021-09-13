@@ -33,7 +33,7 @@ struct UserDetails: View {
             VStack(alignment: .leading) {
                 HStack {
                     Text("Information")
-                        .font(.title)
+                        .font(.title2)
                     
                     Spacer()
                     if !services.friends.contains(user) {
@@ -94,9 +94,9 @@ struct UserDetails: View {
         .ignoresSafeArea(edges: .top)
     }
 }
-
-struct UserDetails_Previews: PreviewProvider {
-    static var previews: some View {
-        UserDetails(user: User(_id: "", email: "nttin@gmail.com", password: "", fullname: "Nguyen Trong Tin"))
-    }
-}
+//
+//struct UserDetails_Previews: PreviewProvider {
+//    static var previews: some View {
+//        UserDetails(user: User(_id: "", email: "nttin@gmail.com", password: "", fullname: "Nguyen Trong Tin"))
+//    }
+//}

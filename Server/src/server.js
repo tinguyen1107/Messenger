@@ -1,34 +1,51 @@
-var express = require('express');
+var express = require("express");
 var app = express();
 app.use(express.static("public"));
 app.set("views", "./views");
 
+require("dotenv").config();
+const { PORT } = process.env;
 // Socket
-var server = require('http').Server(app);
+var server = require("http").Server(app);
 var io = require("socket.io")(server);
-require ("./socket/mainSocket")(io);
+require("./socket/mainSocket")(io);
 
-server.listen(7000);
+const port = PORT;
+server.listen(port, () => {
+  console.log(`Server running on port: ${port}`);
+});
+
 // Mongoose
-const mongoose = require("mongoose");
-mongoose.connect(
-    "mongodb+srv://user:X5yRzQ1OwK2zu8Rf@cluster0.2jlrt.mongodb.net/user?retryWrites=true&w=majority",
-    {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-        useFindAndModify: false,
-    }, 
-    function(err) {
-        if (err) {
-            console.error(err);
-        } else {
-            console.log("Connect to database successfully");
-        }
-    }
-)
+require("./config/database").connect();
 
 var bodyParser = require("body-parser");
 
-app.use(bodyParser.urlencoded({extend: false}));
+app.use(bodyParser.urlencoded({ extend: false }));
+app.use(bodyParser.json());
 
-require("./routes/route")(app);
+var router = require("./routes/route");
+
+//const Grid = require("gridfs-stream");
+//let gfs;
+//
+//
+//const conn = mongoose.connection;
+//conn.once("open", function () {
+//  gfs = Grid(conn.db, mongoose.mongo);
+//  gfs.collection("photos");
+//});
+//
+//app.get("/file/:filename", async (req, res) => {
+//  try {
+//    console.log(req.params.filename);
+//
+//    const file = await gfs.files.findOne({ filename: req.params.filename });
+//    const readStream = gfs.createReadStream(file.filename);
+//    readStream.pipe(res);
+//    console.log("SUCCESS");
+//  } catch (error) {
+//    res.send("not found");
+//  }
+//});
+
+app.use("/", router);

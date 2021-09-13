@@ -11,33 +11,29 @@ import SwiftUI
 
 let BaseURL = "http://192.168.1.102:7000"
 
-extension UIApplication {
-    func endEditing() {
-        sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-    }
-}
-
 struct Alamofire {
-    func login_register (state: String, user: User, complete: @escaping (Int, User?)->()) {
+    
+//    func verifyToken (token: String, complete: @escaping (Int, User?)->()) {
+//        let url = BaseURL + "/" + state
+//    }
+//    let params: Parameters = [ "ids": [fromId, toId] ]
+    func login_register (state: String, params: Parameters, complete: @escaping (Int, User?)->()) {
         let url = BaseURL + "/" + state
         
-        AF.request(url, method: .post, parameters: user, encoder: URLEncodedFormParameterEncoder(destination: .httpBody))
-            .validate(statusCode: 200..<300)
+        AF.request(url, method: .post, parameters: params)
             .responseJSON { response in
                 switch response.result {
                 case .success(let JSON):
                     if let data = JSON as? Dictionary<String, Any> {
-                        print("\nData: \(data)")
-                        let result = data["result"] as! Int
-                        if result != 0 {complete(result, nil)}
-                        else {
-                            let final = try! JSONSerialization.data(withJSONObject: data["details"]!)
-                            let user = try! JSONDecoder().decode(User.self, from: final)
-                            complete(result, user)
-                        }
+                        let final = try! JSONSerialization.data(withJSONObject: data)
+                        let user = try! JSONDecoder().decode(User.self, from: final)
+                        print(user)
+                        UserDefaults.standard.setValue(["token": user.token], forKey: "_USER")
+                        complete(0, user)
                     }
                 case .failure(let error):
                     print("Request failed with error: \(error)")
+                    complete(1, nil)
                 }
             }
     }
@@ -114,5 +110,57 @@ struct Alamofire {
                     print("Request failed with error: \(error)")
                 }
             }
+    }
+    
+    func upload(image: Data, imageName: String, params: [String: Any]) {
+        AF.upload(multipartFormData: { multiPart in
+            for (key, value) in params {
+                if let temp = value as? String {
+                    multiPart.append(temp.data(using: .utf8)!, withName: key)
+                }
+                if let temp = value as? Int {
+                    multiPart.append("\(temp)".data(using: .utf8)!, withName: key)
+                }
+                if let temp = value as? NSArray {
+                    temp.forEach({ element in
+                        let keyObj = key + "[]"
+                        if let string = element as? String {
+                            multiPart.append(string.data(using: .utf8)!, withName: keyObj)
+                        } else
+                        if let num = element as? Int {
+                            let value = "\(num)"
+                            multiPart.append(value.data(using: .utf8)!, withName: keyObj)
+                        }
+                    })
+                }
+            }
+            multiPart.append(image, withName: "avatar", fileName: imageName + ".png", mimeType: "image/png")
+        }, to: BaseURL + "/user/info/edit", method: .post)
+        .uploadProgress(queue: .main, closure: { progress in
+            //Current upload progress of file
+            print("Upload Progress: \(progress.fractionCompleted)")
+        })
+        .responseJSON(completionHandler: { data in
+            print(data)
+        })
+    }
+
+    private func getData(from url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
+        URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
+    }
+
+    func downloadImage(filename: String, completion: @escaping (UIImage) -> ()) {
+        print("Download Started")
+        let url = URL(string: BaseURL + "/file/" + filename)!
+        getData(from: url) { data, response, error in
+            guard let data = data, error == nil else { return }
+            print(response?.suggestedFilename ?? url.lastPathComponent)
+            print("Download Finished")
+            // always update the UI from the main thread
+            DispatchQueue.main.async() {
+//                let uiImage = UIImage(data: data)
+                completion(UIImage(data: data)!)
+            }
+        }
     }
 }

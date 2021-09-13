@@ -24,6 +24,21 @@ struct SimpleButton: ButtonStyle {
     }
 }
 
+struct SimpleButtonView: View {
+    var title: String
+    
+    var body: some View {
+        HStack {
+            Text(title)
+        }
+        .padding(.vertical, 8)
+        .frame(maxWidth: UIScreen.main.bounds.width)
+        .background(Color(.systemGray5))
+        .cornerRadius(9)
+        .padding(.horizontal)
+    }
+}
+
 struct InputTextField: TextFieldStyle {
     func _body(configuration: TextField<Self._Label>) -> some View {
         configuration

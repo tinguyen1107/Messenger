@@ -6,6 +6,17 @@
          contextName = "closure #1 in closure #2 in closure #1 in ListUser.body.getter:ListUser.swift">
       </ContextState>
       <ContextState
+         contextName = "closure #1 in Alamofire.login_register(state:user:complete:):Alamofire.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "user">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Alamofire.login_register(state:user:complete:):Alamofire.swift">
+      </ContextState>
+      <ContextState
          contextName = "closure #2 in DefaultController.socketListening():SocketIO.swift">
          <PersistentStrings>
             <PersistentString
