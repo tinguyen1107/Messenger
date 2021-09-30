@@ -7,24 +7,22 @@
 
 import Foundation
 
-class User: Codable, Hashable {
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(email)
-        hasher.combine(fullname)
-        hasher.combine(avatar)
-        hasher.combine(token)
-    }
-    
-    static func == (lhs: User, rhs: User) -> Bool {
-        return lhs.email == rhs.email
-    }
-    
+struct User: Codable, Hashable {
     var _id: String
     var email: String
     var password: String
     var fullname: String
     var avatar: String
     var token: String
+    
+    init(_id: String = "", email: String = "", password: String = "", fullname: String = "", avatar: String = "", token: String = "") {
+        self._id = _id
+        self.email = email
+        self.password = password
+        self.fullname = fullname
+        self.avatar = avatar
+        self.token = token
+    }
 }
 
 struct MessageSupport {

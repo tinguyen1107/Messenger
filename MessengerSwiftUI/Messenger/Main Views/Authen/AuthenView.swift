@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import AVFoundation
 
 struct AlertContent: Identifiable {
     var id: String { title }
@@ -43,6 +44,24 @@ struct AuthenView: View {
             .animation(.default)
             .onAppear {
                 verifingToken()
+//                if let device = AVCaptureDevice.default(.builtInDualCamera,
+//                                                        for: .video, position: .back) {
+//                    return device
+//                } else if let device = AVCaptureDevice.default(.builtInWideAngleCamera,
+//                                                               for: .video, position: .back) {
+//                    return device
+//                } else {
+//                    fatalError("Missing expected back camera device.")
+//                }
+
+                AVCaptureDevice.requestAccess(for: AVMediaType.video) { response in
+                        if response {
+                            
+                            //access granted
+                        } else {
+
+                        }
+                    }
             }
         }
     }

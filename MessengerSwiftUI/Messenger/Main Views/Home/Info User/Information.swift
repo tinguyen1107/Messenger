@@ -25,7 +25,7 @@ struct Information: View {
                 .frame(height: UIScreen.main.bounds.height / 3)
 
             CircleImage(image: Image(uiImage: avatar))
-                .frame(width: 200, height: 200) 
+                .frame(width: 200, height: 200)
                 .offset(y: -100)
                 .padding(.bottom, -115)
                 
