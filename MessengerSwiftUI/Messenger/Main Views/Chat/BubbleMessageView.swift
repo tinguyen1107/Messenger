@@ -7,40 +7,47 @@
 
 import SwiftUI
 
+enum MessageType {
+    case text
+    case image
+}
+
 struct BubbleMessageView: View {
-    var message: [String]
+    var viewModel: BubbleMessageViewModel
     
     var body: some View {
-        let isUserSend = message[0] == "user"
         HStack {
-            VStack (alignment: .trailing, spacing: 0) {
+            VStack (alignment: viewModel.isUserSend ? .trailing : .leading, spacing: 0) {
                 
-                if !isUserSend {
-                    Text(message[0])
+                if !viewModel.isUserSend {
+                    Text(viewModel.sentBy)
                         .foregroundColor(.black.opacity(0.5))
                 }
                 HStack {
-                    Text(message[1])
-                        .foregroundColor(isUserSend ? .white : .black)
+                    Text(viewModel.content)
+                        .foregroundColor(viewModel.isUserSend ? .white : .black)
                         .frame(alignment: .leading)
                         .padding(.vertical, 8)
 
                 }
                 .padding(.horizontal, 15)
-                .background(isUserSend ? Color.blue.opacity(0.8) : Color(.systemGray4))
+                .background(viewModel.isUserSend ? Color.blue.opacity(0.8) : Color(.systemGray4))
                 .cornerRadius(12)
-                .frame(maxWidth: UIScreen.main.bounds.width * 2/3, alignment: isUserSend ? .trailing : .leading)
+                .frame(maxWidth: UIScreen.main.bounds.width * 2/3, alignment: viewModel.isUserSend ? .trailing : .leading)
                 Text("14:30")
                     .foregroundColor(.black.opacity(0.5))
             }
         }
-        .frame(maxWidth: UIScreen.main.bounds.width, alignment: isUserSend ? .trailing : .leading)
+        .frame(maxWidth: UIScreen.main.bounds.width, alignment: viewModel.isUserSend ? .trailing : .leading)
         .padding(.horizontal, 10)
     }
 }
 
 struct BubbleMessageView_Previews: PreviewProvider {
     static var previews: some View {
-        BubbleMessageView(message: ["user", "this is content"])
+        VStack {
+            BubbleMessageView(viewModel: BubbleMessageViewModel(message: ["user", "this is content"]))
+            BubbleMessageView(viewModel: BubbleMessageViewModel(message: ["Teo", "this is content"]))
+        }
     }
 }

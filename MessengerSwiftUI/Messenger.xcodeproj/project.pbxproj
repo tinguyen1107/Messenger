@@ -35,6 +35,7 @@
 		A3D72A4B26BECB1D00332E44 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A3D72A4A26BECB1D00332E44 /* Preview Assets.xcassets */; };
 		A3D72A7026BECBCE00332E44 /* AuthenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D72A6F26BECBCE00332E44 /* AuthenView.swift */; };
 		A3EC58C926CE716A00150093 /* AuthenForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3EC58C826CE716A00150093 /* AuthenForm.swift */; };
+		C32BEC75274035E200BC7B0B /* BubbleMessageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32BEC74274035E200BC7B0B /* BubbleMessageViewModel.swift */; };
 		C3A160422740016A00C72FD1 /* BubbleMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A160412740016A00C72FD1 /* BubbleMessageView.swift */; };
 /* End PBXBuildFile section */
 
@@ -67,6 +68,7 @@
 		A3D72A4C26BECB1D00332E44 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A3D72A6F26BECBCE00332E44 /* AuthenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenView.swift; sourceTree = "<group>"; };
 		A3EC58C826CE716A00150093 /* AuthenForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenForm.swift; sourceTree = "<group>"; };
+		C32BEC74274035E200BC7B0B /* BubbleMessageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleMessageViewModel.swift; sourceTree = "<group>"; };
 		C3A160412740016A00C72FD1 /* BubbleMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleMessageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -111,6 +113,7 @@
 			children = (
 				A327D5B326C450D40048E9E4 /* ChatView.swift */,
 				C3A160412740016A00C72FD1 /* BubbleMessageView.swift */,
+				C32BEC74274035E200BC7B0B /* BubbleMessageViewModel.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -327,6 +330,7 @@
 				A3C4845526C238B90037389D /* Alamofire.swift in Sources */,
 				A32430FD26CEA4CC00A81853 /* Keyboard.swift in Sources */,
 				C3A160422740016A00C72FD1 /* BubbleMessageView.swift in Sources */,
+				C32BEC75274035E200BC7B0B /* BubbleMessageViewModel.swift in Sources */,
 				A31138B726E10D3800CB4E2C /* Font.swift in Sources */,
 				A3D72A7026BECBCE00332E44 /* AuthenView.swift in Sources */,
 				A327D5B426C450D40048E9E4 /* ChatView.swift in Sources */,
