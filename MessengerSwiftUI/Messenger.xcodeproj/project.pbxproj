@@ -35,24 +35,8 @@
 		A3D72A4B26BECB1D00332E44 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A3D72A4A26BECB1D00332E44 /* Preview Assets.xcassets */; };
 		A3D72A7026BECBCE00332E44 /* AuthenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D72A6F26BECBCE00332E44 /* AuthenView.swift */; };
 		A3EC58C926CE716A00150093 /* AuthenForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3EC58C826CE716A00150093 /* AuthenForm.swift */; };
+		C3A160422740016A00C72FD1 /* BubbleMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A160412740016A00C72FD1 /* BubbleMessageView.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		A3D72A5226BECB1D00332E44 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A3D72A3826BECB1C00332E44 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = A3D72A3F26BECB1C00332E44;
-			remoteInfo = Messenger;
-		};
-		A3D72A5D26BECB1D00332E44 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A3D72A3826BECB1C00332E44 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = A3D72A3F26BECB1C00332E44;
-			remoteInfo = Messenger;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		A31138B226E107D500CB4E2C /* Infomation_Edit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Infomation_Edit.swift; sourceTree = "<group>"; };
@@ -81,10 +65,9 @@
 		A3D72A4726BECB1D00332E44 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A3D72A4A26BECB1D00332E44 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		A3D72A4C26BECB1D00332E44 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A3D72A5126BECB1D00332E44 /* MessengerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MessengerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		A3D72A5C26BECB1D00332E44 /* MessengerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MessengerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3D72A6F26BECBCE00332E44 /* AuthenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenView.swift; sourceTree = "<group>"; };
 		A3EC58C826CE716A00150093 /* AuthenForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenForm.swift; sourceTree = "<group>"; };
+		C3A160412740016A00C72FD1 /* BubbleMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleMessageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,20 +77,6 @@
 			files = (
 				A3ADB17026EB4A9F00728DF6 /* Alamofire in Frameworks */,
 				A3ADB17226EB4AA300728DF6 /* SocketIO in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A3D72A4E26BECB1D00332E44 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A3D72A5926BECB1D00332E44 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -141,6 +110,7 @@
 			isa = PBXGroup;
 			children = (
 				A327D5B326C450D40048E9E4 /* ChatView.swift */,
+				C3A160412740016A00C72FD1 /* BubbleMessageView.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -239,8 +209,6 @@
 			isa = PBXGroup;
 			children = (
 				A3D72A4026BECB1C00332E44 /* Messenger.app */,
-				A3D72A5126BECB1D00332E44 /* MessengerTests.xctest */,
-				A3D72A5C26BECB1D00332E44 /* MessengerUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -302,42 +270,6 @@
 			productReference = A3D72A4026BECB1C00332E44 /* Messenger.app */;
 			productType = "com.apple.product-type.application";
 		};
-		A3D72A5026BECB1D00332E44 /* MessengerTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = A3D72A6826BECB1D00332E44 /* Build configuration list for PBXNativeTarget "MessengerTests" */;
-			buildPhases = (
-				A3D72A4D26BECB1D00332E44 /* Sources */,
-				A3D72A4E26BECB1D00332E44 /* Frameworks */,
-				A3D72A4F26BECB1D00332E44 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				A3D72A5326BECB1D00332E44 /* PBXTargetDependency */,
-			);
-			name = MessengerTests;
-			productName = MessengerTests;
-			productReference = A3D72A5126BECB1D00332E44 /* MessengerTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		A3D72A5B26BECB1D00332E44 /* MessengerUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = A3D72A6B26BECB1D00332E44 /* Build configuration list for PBXNativeTarget "MessengerUITests" */;
-			buildPhases = (
-				A3D72A5826BECB1D00332E44 /* Sources */,
-				A3D72A5926BECB1D00332E44 /* Frameworks */,
-				A3D72A5A26BECB1D00332E44 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				A3D72A5E26BECB1D00332E44 /* PBXTargetDependency */,
-			);
-			name = MessengerUITests;
-			productName = MessengerUITests;
-			productReference = A3D72A5C26BECB1D00332E44 /* MessengerUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -349,14 +281,6 @@
 				TargetAttributes = {
 					A3D72A3F26BECB1C00332E44 = {
 						CreatedOnToolsVersion = 12.5.1;
-					};
-					A3D72A5026BECB1D00332E44 = {
-						CreatedOnToolsVersion = 12.5.1;
-						TestTargetID = A3D72A3F26BECB1C00332E44;
-					};
-					A3D72A5B26BECB1D00332E44 = {
-						CreatedOnToolsVersion = 12.5.1;
-						TestTargetID = A3D72A3F26BECB1C00332E44;
 					};
 				};
 			};
@@ -378,8 +302,6 @@
 			projectRoot = "";
 			targets = (
 				A3D72A3F26BECB1C00332E44 /* Messenger */,
-				A3D72A5026BECB1D00332E44 /* MessengerTests */,
-				A3D72A5B26BECB1D00332E44 /* MessengerUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -394,20 +316,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A3D72A4F26BECB1D00332E44 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A3D72A5A26BECB1D00332E44 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -418,6 +326,7 @@
 				A327D5AB26C42B5C0048E9E4 /* HomeView.swift in Sources */,
 				A3C4845526C238B90037389D /* Alamofire.swift in Sources */,
 				A32430FD26CEA4CC00A81853 /* Keyboard.swift in Sources */,
+				C3A160422740016A00C72FD1 /* BubbleMessageView.swift in Sources */,
 				A31138B726E10D3800CB4E2C /* Font.swift in Sources */,
 				A3D72A7026BECBCE00332E44 /* AuthenView.swift in Sources */,
 				A327D5B426C450D40048E9E4 /* ChatView.swift in Sources */,
@@ -442,34 +351,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A3D72A4D26BECB1D00332E44 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A3D72A5826BECB1D00332E44 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		A3D72A5326BECB1D00332E44 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = A3D72A3F26BECB1C00332E44 /* Messenger */;
-			targetProxy = A3D72A5226BECB1D00332E44 /* PBXContainerItemProxy */;
-		};
-		A3D72A5E26BECB1D00332E44 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = A3D72A3F26BECB1C00332E44 /* Messenger */;
-			targetProxy = A3D72A5D26BECB1D00332E44 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		A3D72A6326BECB1D00332E44 /* Debug */ = {
@@ -598,7 +480,7 @@
 				DEVELOPMENT_TEAM = NW4TV32R2S;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Messenger/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -620,7 +502,7 @@
 				DEVELOPMENT_TEAM = NW4TV32R2S;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Messenger/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -629,90 +511,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
-		A3D72A6926BECB1D00332E44 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = NW4TV32R2S;
-				INFOPLIST_FILE = MessengerTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = tinguyen.MessengerTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Messenger.app/Messenger";
-			};
-			name = Debug;
-		};
-		A3D72A6A26BECB1D00332E44 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = NW4TV32R2S;
-				INFOPLIST_FILE = MessengerTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = tinguyen.MessengerTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Messenger.app/Messenger";
-			};
-			name = Release;
-		};
-		A3D72A6C26BECB1D00332E44 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = NW4TV32R2S;
-				INFOPLIST_FILE = MessengerUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = tinguyen.MessengerUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Messenger;
-			};
-			name = Debug;
-		};
-		A3D72A6D26BECB1D00332E44 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = NW4TV32R2S;
-				INFOPLIST_FILE = MessengerUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = tinguyen.MessengerUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Messenger;
 			};
 			name = Release;
 		};
@@ -733,24 +531,6 @@
 			buildConfigurations = (
 				A3D72A6626BECB1D00332E44 /* Debug */,
 				A3D72A6726BECB1D00332E44 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		A3D72A6826BECB1D00332E44 /* Build configuration list for PBXNativeTarget "MessengerTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				A3D72A6926BECB1D00332E44 /* Debug */,
-				A3D72A6A26BECB1D00332E44 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		A3D72A6B26BECB1D00332E44 /* Build configuration list for PBXNativeTarget "MessengerUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				A3D72A6C26BECB1D00332E44 /* Debug */,
-				A3D72A6D26BECB1D00332E44 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
