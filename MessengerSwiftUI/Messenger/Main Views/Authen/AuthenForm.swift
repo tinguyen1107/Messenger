@@ -12,18 +12,28 @@ struct AuthenForm: View {
     @EnvironmentObject var services: DefaultController
     @ObservedObject private var kGuardian = KeyboardGuardian(textFieldCount: 3)
     
-    @State private var state = "login"
+    @State private var authenFormState: AuthenFormState = .login
+    
+    @ObservedObject var authenModel: AuthenModel
+    
+    private var authenState: Binding<AuthenState?>
+    
     @State private var willMoveToNextScreen = false
     @State private var selectedShow: AlertContent?
+    
+    public init(authenModel: AuthenModel) {
+        self.authenState = .constant(.editing)
+        self.authenModel = authenModel
+    }
     
     var body: some View {
         ZStack{
             Wave(strength: 20, frequency: 10)
                 .frame(height: UIScreen.main.bounds.height*0.6)
             VStack{
-                Picker(selection: $state, label: Text("")) {
-                    Text("Login").tag("login")
-                    Text("Register").tag("register")
+                Picker(selection: $authenFormState, label: Text("")) {
+                    Text(LocalText.login).tag(AuthenFormState.login)
+                    Text(LocalText.register).tag(AuthenFormState.register)
                 }
                 .colorMultiply(Color(#colorLiteral(red: 0.5811089873, green: 0.8589370251, blue: 0.9827749133, alpha: 1)))
                 .pickerStyle(SegmentedPickerStyle())
@@ -32,11 +42,11 @@ struct AuthenForm: View {
                 
                 contentView
                 
-                NavigationLink (destination: HomeView(), isActive: $willMoveToNextScreen) { EmptyView() }
+                NavigationLink (destination: HomeView(authenModel: authenModel), isActive: $willMoveToNextScreen) { EmptyView() }
                 Button(action: {
                     submit()
                 }, label: {
-                    HStack { Text(state == "login" ? "Login" : "Register") }
+                    HStack { Text(authenFormState.title) }
                 })
                 .buttonStyle(SimpleButton(color: Color(#colorLiteral(red: 0.5811089873, green: 0.8589370251, blue: 0.9827749133, alpha: 1)), textColor: Color(#colorLiteral(red: 0.1396988332, green: 0.394677639, blue: 0.5602707863, alpha: 1))))
                 .padding(.top, 10)
@@ -61,10 +71,10 @@ extension AuthenForm {
             "email": services.user.email,
             "password": services.user.password
         ]
-        Alamofire().login_register(state: state, params: params) { result, detail in
+        Alamofire().login_register(state: authenFormState.title.lowercased(), params: params) { result, detail in
             if result == 0 {
                 services.user = detail!
-                services.connect(user: User(_id: services.user._id, email: services.user.email, password: state, fullname: services.user.fullname, avatar: "default", token: ""))
+                services.connect(user: User(_id: services.user._id, email: services.user.email, password: authenFormState.title.lowercased(), fullname: services.user.fullname, avatar: "default", token: ""))
                 willMoveToNextScreen.toggle()
             } else {
                 selectedShow = AlertContent(title: "Log in failed", description: "Please try again.", dismiss: true)
@@ -84,7 +94,7 @@ extension AuthenForm {
                     self.kGuardian.showField = 1
                 }
             
-            if state == "register" {
+            if authenFormState == .register {
                 TextField ("Fullname", text: $services.user.fullname,
                            onEditingChanged: { if $0 { self.kGuardian.showField = 2 } })
                     .background(GeometryGetter(rect: $kGuardian.rects[2]))
@@ -96,6 +106,6 @@ extension AuthenForm {
 
 struct InputView_Previews: PreviewProvider {
     static var previews: some View {
-        AuthenForm().environmentObject(DefaultController())
+        AuthenForm(authenModel: AuthenModel()).environmentObject(DefaultController())
     }
 }

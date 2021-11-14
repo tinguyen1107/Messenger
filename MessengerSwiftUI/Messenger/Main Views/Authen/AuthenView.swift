@@ -8,15 +8,8 @@
 import SwiftUI
 import AVFoundation
 
-struct AlertContent: Identifiable {
-    var id: String { title }
-    let title: String
-    let description: String?
-    let dismiss: Bool
-}
-
 struct AuthenView: View {
-    @State private var state: String? = "waiting"
+    @StateObject var authenModel: AuthenModel = AuthenModel()
     
     var body: some View {
         NavigationView {
@@ -25,12 +18,14 @@ struct AuthenView: View {
                 headerView
                     .frame(maxWidth: UIScreen.main.bounds.width)
                 Spacer()
-                if state=="authen" {
-                    AuthenForm()
+                if authenModel.authenState == .editing {
+                    AuthenForm(authenModel: self.authenModel)
                         .transition(.move(edge: .bottom))
                         .animation(.linear)
                 }
-                NavigationLink(destination: HomeView(), tag: "verified", selection: $state) { EmptyView() }.transition(.move(edge: .bottom))
+                NavigationLink(destination: HomeView(authenModel: self.authenModel),
+                               tag: AuthenState.succeeded,
+                               selection: $authenModel.authenState) { EmptyView() }.transition(.move(edge: .bottom))
                     .animation(.linear)
             }
             .background(
@@ -90,11 +85,11 @@ extension AuthenView {
         let defaults = UserDefaults.standard
         if let oldUser = defaults.dictionary(forKey: "_USER"), let token = oldUser["token"] {
             print("TOKEN: \(token)")
-            state = "verified"
+            authenModel.authenState = .succeeded
         } else {
             print("THERE ARE NO TOKEN")
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                state = "authen"
+                authenModel.authenState = .editing
             }
         }
     }

@@ -35,6 +35,8 @@ struct HomeView: View {
         }
     }
     
+    @ObservedObject var authenModel: AuthenModel
+    
     @State private var selection: Tab = .listFriend
     
     var body: some View {
@@ -54,7 +56,7 @@ struct HomeView: View {
                     Label("More friend", systemImage: "person.crop.circle.badge.plus")
                 }
                 .tag(Tab.listUser)
-            SettingView()
+            SettingView(viewModel: SettingViewModel(authenModel: authenModel))
                 .tabItem {
                     Label("Setting", systemImage: "gear")
                 }
