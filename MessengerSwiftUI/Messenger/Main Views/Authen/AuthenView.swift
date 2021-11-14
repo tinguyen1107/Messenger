@@ -38,39 +38,19 @@ struct AuthenView: View {
             .ignoresSafeArea()
             .animation(.default)
             .onAppear {
-                verifingToken()
-//                if let device = AVCaptureDevice.default(.builtInDualCamera,
-//                                                        for: .video, position: .back) {
-//                    return device
-//                } else if let device = AVCaptureDevice.default(.builtInWideAngleCamera,
-//                                                               for: .video, position: .back) {
-//                    return device
-//                } else {
-//                    fatalError("Missing expected back camera device.")
-//                }
-
-                AVCaptureDevice.requestAccess(for: AVMediaType.video) { response in
-                        if response {
-                            
-                            //access granted
-                        } else {
-
-                        }
-                    }
+                authenModel.verifingToken()
             }
         }
     }
-}
-
-extension AuthenView {
+    
     var headerView: some View {
         HStack {
             VStack (alignment: .leading) {
-                Text("Messenger")
+                Text(LocalText.app_name)
                     .font(localFont(.h1))
                     .foregroundColor(Color(#colorLiteral(red: 0.1411764771, green: 0.3960784376, blue: 0.5647059083, alpha: 1)))
                     .lineLimit(1)
-                Text("Welcome to messenger!\nLet say something to your friend!")
+                Text(LocalText.short_description)
                     .font(localFont(.description))
                     .foregroundColor(Color(#colorLiteral(red: 0.180785032, green: 0.5511000946, blue: 0.8088557696, alpha: 1)))
                     .lineLimit(2)
@@ -78,19 +58,6 @@ extension AuthenView {
             }
             .padding(.leading, 20)
             Spacer()
-        }
-    }
-    
-    func verifingToken () {
-        let defaults = UserDefaults.standard
-        if let oldUser = defaults.dictionary(forKey: "_USER"), let token = oldUser["token"] {
-            print("TOKEN: \(token)")
-            authenModel.authenState = .succeeded
-        } else {
-            print("THERE ARE NO TOKEN")
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                authenModel.authenState = .editing
-            }
         }
     }
 }

@@ -11,18 +11,9 @@ import Alamofire
 struct AuthenForm: View {
     @EnvironmentObject var services: DefaultController
     @ObservedObject private var kGuardian = KeyboardGuardian(textFieldCount: 3)
-    
-    @State private var authenFormState: AuthenFormState = .login
-    
     @ObservedObject var authenModel: AuthenModel
-    
-    private var authenState: Binding<AuthenState?>
-    
-    @State private var willMoveToNextScreen = false
-    @State private var selectedShow: AlertContent?
-    
+
     public init(authenModel: AuthenModel) {
-        self.authenState = .constant(.editing)
         self.authenModel = authenModel
     }
     
@@ -31,7 +22,7 @@ struct AuthenForm: View {
             Wave(strength: 20, frequency: 10)
                 .frame(height: UIScreen.main.bounds.height*0.6)
             VStack{
-                Picker(selection: $authenFormState, label: Text("")) {
+                Picker(selection: $authenModel.authenFormState, label: Text("")) {
                     Text(LocalText.login).tag(AuthenFormState.login)
                     Text(LocalText.register).tag(AuthenFormState.register)
                 }
@@ -42,43 +33,32 @@ struct AuthenForm: View {
                 
                 contentView
                 
-                NavigationLink (destination: HomeView(authenModel: authenModel), isActive: $willMoveToNextScreen) { EmptyView() }
+                NavigationLink (destination: HomeView(authenModel: authenModel),
+                                tag: AuthenState.succeeded,
+                                selection: $authenModel.authenState) { EmptyView() }
                 Button(action: {
-                    submit()
+                    authenModel.submit()
                 }, label: {
-                    HStack { Text(authenFormState.title) }
+                    HStack { Text(authenModel.authenFormState.title) }
                 })
                 .buttonStyle(SimpleButton(color: Color(#colorLiteral(red: 0.5811089873, green: 0.8589370251, blue: 0.9827749133, alpha: 1)), textColor: Color(#colorLiteral(red: 0.1396988332, green: 0.394677639, blue: 0.5602707863, alpha: 1))))
                 .padding(.top, 10)
                 .shadow(radius: 5)
             }
+            .onChange(of: authenModel.authenState, perform: { newValue in
+                if newValue == .succeeded {
+                    services.user = self.authenModel.user
+                    services.connect(user: User(_id: services.user._id, email: services.user.email, password: self.authenModel.authenFormState.title.lowercased(), fullname: services.user.fullname, avatar: "default", token: ""))
+                }
+            })
             .navigationBarHidden(true)
-            .alert(item: $selectedShow) { show in
+            .alert(item: $authenModel.selectedShow) { show in
                 Alert(title: Text(show.title), message: Text(show.description ?? ""), dismissButton: .cancel())
             }
             .offset(y: kGuardian.slide)
             .onAppear { self.kGuardian.addObserver() }
             .onDisappear { self.kGuardian.removeObserver() }
             .padding(.horizontal, 20)
-        }
-    }
-}
-
-extension AuthenForm {
-    private func submit () {
-        //        user: services.user
-        let params: Parameters = [
-            "email": services.user.email,
-            "password": services.user.password
-        ]
-        Alamofire().login_register(state: authenFormState.title.lowercased(), params: params) { result, detail in
-            if result == 0 {
-                services.user = detail!
-                services.connect(user: User(_id: services.user._id, email: services.user.email, password: authenFormState.title.lowercased(), fullname: services.user.fullname, avatar: "default", token: ""))
-                willMoveToNextScreen.toggle()
-            } else {
-                selectedShow = AlertContent(title: "Log in failed", description: "Please try again.", dismiss: true)
-            }
         }
     }
     
@@ -94,7 +74,7 @@ extension AuthenForm {
                     self.kGuardian.showField = 1
                 }
             
-            if authenFormState == .register {
+            if authenModel.authenFormState == .register {
                 TextField ("Fullname", text: $services.user.fullname,
                            onEditingChanged: { if $0 { self.kGuardian.showField = 2 } })
                     .background(GeometryGetter(rect: $kGuardian.rects[2]))

@@ -35,14 +35,14 @@
 		A3D72A4B26BECB1D00332E44 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A3D72A4A26BECB1D00332E44 /* Preview Assets.xcassets */; };
 		A3D72A7026BECBCE00332E44 /* AuthenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D72A6F26BECBCE00332E44 /* AuthenView.swift */; };
 		A3EC58C926CE716A00150093 /* AuthenForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3EC58C826CE716A00150093 /* AuthenForm.swift */; };
-		C32A1C4B2740BB7500BA6806 /* Env_Navigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32A1C4A2740BB7500BA6806 /* Env_Navigator.swift */; };
 		C32BEC75274035E200BC7B0B /* BubbleMessageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32BEC74274035E200BC7B0B /* BubbleMessageViewModel.swift */; };
 		C32BEC78274036DC00BC7B0B /* LocalText.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32BEC77274036DB00BC7B0B /* LocalText.swift */; };
-		C36449CE27403BC4008855B5 /* Enum_AuthenFormState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36449CD27403BC4008855B5 /* Enum_AuthenFormState.swift */; };
 		C36449D027403BF5008855B5 /* AlertContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36449CF27403BF5008855B5 /* AlertContent.swift */; };
 		C3A160422740016A00C72FD1 /* BubbleMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A160412740016A00C72FD1 /* BubbleMessageView.swift */; };
 		C3CDF1C92740FAE800542277 /* VButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3CDF1C82740FAE800542277 /* VButton.swift */; };
 		C3CDF1CB2740FB1A00542277 /* VMButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3CDF1CA2740FB1A00542277 /* VMButton.swift */; };
+		C3CDF1CE2741072700542277 /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3CDF1CD2741072700542277 /* SettingViewModel.swift */; };
+		C3CDF1D0274109FA00542277 /* AuthenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3CDF1CF274109FA00542277 /* AuthenViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,14 +74,14 @@
 		A3D72A4C26BECB1D00332E44 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A3D72A6F26BECBCE00332E44 /* AuthenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenView.swift; sourceTree = "<group>"; };
 		A3EC58C826CE716A00150093 /* AuthenForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenForm.swift; sourceTree = "<group>"; };
-		C32A1C4A2740BB7500BA6806 /* Env_Navigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Env_Navigator.swift; sourceTree = "<group>"; };
 		C32BEC74274035E200BC7B0B /* BubbleMessageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleMessageViewModel.swift; sourceTree = "<group>"; };
 		C32BEC77274036DB00BC7B0B /* LocalText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalText.swift; sourceTree = "<group>"; };
-		C36449CD27403BC4008855B5 /* Enum_AuthenFormState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enum_AuthenFormState.swift; sourceTree = "<group>"; };
 		C36449CF27403BF5008855B5 /* AlertContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertContent.swift; sourceTree = "<group>"; };
 		C3A160412740016A00C72FD1 /* BubbleMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleMessageView.swift; sourceTree = "<group>"; };
 		C3CDF1C82740FAE800542277 /* VButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VButton.swift; sourceTree = "<group>"; };
 		C3CDF1CA2740FB1A00542277 /* VMButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VMButton.swift; sourceTree = "<group>"; };
+		C3CDF1CD2741072700542277 /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
+		C3CDF1CF274109FA00542277 /* AuthenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +156,7 @@
 			isa = PBXGroup;
 			children = (
 				A3481C9D26C52EEC00E9C6FB /* SettingView.swift */,
+				C3CDF1CD2741072700542277 /* SettingViewModel.swift */,
 			);
 			path = "Setting View";
 			sourceTree = "<group>";
@@ -173,7 +174,6 @@
 			isa = PBXGroup;
 			children = (
 				A3481CAC26C63A0B00E9C6FB /* User.swift */,
-				C32A1C4A2740BB7500BA6806 /* Env_Navigator.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -261,7 +261,7 @@
 			children = (
 				A3EC58C826CE716A00150093 /* AuthenForm.swift */,
 				A3D72A6F26BECBCE00332E44 /* AuthenView.swift */,
-				C36449CD27403BC4008855B5 /* Enum_AuthenFormState.swift */,
+				C3CDF1CF274109FA00542277 /* AuthenViewModel.swift */,
 			);
 			path = Authen;
 			sourceTree = "<group>";
@@ -373,7 +373,6 @@
 				A32430FD26CEA4CC00A81853 /* Keyboard.swift in Sources */,
 				C3A160422740016A00C72FD1 /* BubbleMessageView.swift in Sources */,
 				C32BEC75274035E200BC7B0B /* BubbleMessageViewModel.swift in Sources */,
-				C32A1C4B2740BB7500BA6806 /* Env_Navigator.swift in Sources */,
 				A31138B726E10D3800CB4E2C /* Font.swift in Sources */,
 				A3D72A7026BECBCE00332E44 /* AuthenView.swift in Sources */,
 				C3CDF1CB2740FB1A00542277 /* VMButton.swift in Sources */,
@@ -383,15 +382,16 @@
 				A31138B526E1086F00CB4E2C /* ImagePicker.swift in Sources */,
 				A327D5AE26C42D8B0048E9E4 /* SimpleCard.swift in Sources */,
 				A36EFE4926C51F1200382578 /* ListFriendView.swift in Sources */,
+				C3CDF1D0274109FA00542277 /* AuthenViewModel.swift in Sources */,
 				C36449D027403BF5008855B5 /* AlertContent.swift in Sources */,
 				A3481CAD26C63A0B00E9C6FB /* User.swift in Sources */,
 				A31138B326E107D500CB4E2C /* Infomation_Edit.swift in Sources */,
 				A3D72A4626BECB1C00332E44 /* ContentView.swift in Sources */,
+				C3CDF1CE2741072700542277 /* SettingViewModel.swift in Sources */,
 				C3CDF1C92740FAE800542277 /* VButton.swift in Sources */,
 				A3481CA026C55C0300E9C6FB /* Information.swift in Sources */,
 				A3481C9E26C52EEC00E9C6FB /* SettingView.swift in Sources */,
 				A3EC58C926CE716A00150093 /* AuthenForm.swift in Sources */,
-				C36449CE27403BC4008855B5 /* Enum_AuthenFormState.swift in Sources */,
 				A3481CA926C5DC0500E9C6FB /* SocketIO.swift in Sources */,
 				A3D72A4426BECB1C00332E44 /* MessengerApp.swift in Sources */,
 				A3B42EA126BEDD62008DA684 /* CustomButton.swift in Sources */,

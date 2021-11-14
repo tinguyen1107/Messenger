@@ -9,7 +9,7 @@ import Foundation
 import Alamofire
 import SwiftUI
 
-let BaseURL = "http://192.168.1.102:7000"
+let BaseURL = "http://localhost:9000"
 
 struct Alamofire {
     

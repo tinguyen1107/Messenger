@@ -10,5 +10,6 @@ import Foundation
 struct LocalText {
     static var login = "Login"
     static var register = "Register"
-    
+    static var app_name = "Messenger"
+    static var short_description = "Welcome to messenger!\nLet say something to your friend!"
 }

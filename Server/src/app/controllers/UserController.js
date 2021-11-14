@@ -2,7 +2,7 @@ const User = require("../models/User");
 const httpSupport = require("../../util/HttpSupport");
 const fs = require("fs");
 var path = require("path");
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 class UserController {
@@ -39,9 +39,9 @@ class UserController {
   async register(req, res, next) {
     try {
       const { email, password, fullname } = req.body;
-
+      console.log(req.body)
       if (!email || !password || !fullname) {
-        res.status(400).send("All input us required");
+        return res.status(400).send("All input us required");
       }
 
       const oldUser = await User.findOne({ email });
@@ -66,7 +66,7 @@ class UserController {
 
       user.token = token;
 
-      res.status(201).json(user);
+      return res.status(201).json(user);
     } catch (err) {
       console.log(err);
     }
