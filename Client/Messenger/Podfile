@@ -1,9 +1,0 @@
-target 'Messenger' do
-  use_frameworks!
-
-  pod 'SnapKit'
-  pod 'IQKeyboardManagerSwift'
-  pod 'Socket.IO-Client-Swift'
-  pod 'Alamofire'
-
-end
