@@ -15,8 +15,22 @@ struct AuthenView: View {
         NavigationView {
             VStack (alignment: .leading) {
                 Spacer()
-                headerView
-                    .frame(maxWidth: UIScreen.main.bounds.width)
+                HStack {
+                    VStack (alignment: .leading) {
+                        Text(LocalText.app_name)
+                            .font(localFont(.h1))
+                            .foregroundColor(Color(#colorLiteral(red: 0.1411764771, green: 0.3960784376, blue: 0.5647059083, alpha: 1)))
+                            .lineLimit(1)
+                        Text(LocalText.short_description)
+                            .font(localFont(.description))
+                            .foregroundColor(Color(#colorLiteral(red: 0.180785032, green: 0.5511000946, blue: 0.8088557696, alpha: 1)))
+                            .lineLimit(2)
+                            .padding(.top, 2)
+                    }
+                    .padding(.leading, 20)
+                    Spacer()
+                }
+                .frame(maxWidth: UIScreen.main.bounds.width)
                 Spacer()
                 if authenModel.authenState == .editing {
                     AuthenForm(authenModel: self.authenModel)
@@ -37,27 +51,7 @@ struct AuthenView: View {
             )
             .ignoresSafeArea()
             .animation(.default)
-            .onAppear {
-                authenModel.verifingToken()
-            }
-        }
-    }
-    
-    var headerView: some View {
-        HStack {
-            VStack (alignment: .leading) {
-                Text(LocalText.app_name)
-                    .font(localFont(.h1))
-                    .foregroundColor(Color(#colorLiteral(red: 0.1411764771, green: 0.3960784376, blue: 0.5647059083, alpha: 1)))
-                    .lineLimit(1)
-                Text(LocalText.short_description)
-                    .font(localFont(.description))
-                    .foregroundColor(Color(#colorLiteral(red: 0.180785032, green: 0.5511000946, blue: 0.8088557696, alpha: 1)))
-                    .lineLimit(2)
-                    .padding(.top, 2)
-            }
-            .padding(.leading, 20)
-            Spacer()
+            .onAppear { authenModel.verifingToken() }
         }
     }
 }

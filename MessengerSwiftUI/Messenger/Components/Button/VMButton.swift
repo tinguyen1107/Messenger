@@ -16,9 +16,17 @@ class VMButton: ObservableObject {
     var title: String
     var type: LocalButtonStyle
     
-    init (title: String, action: @escaping ()->Void, type: LocalButtonStyle) {
+    var titleSecondary: String
+    var actionSecondary: ()->Void
+    
+    var isSecondary: Published<Bool>.Publisher
+    
+    init (title: String, action: @escaping ()->Void, titleSecondary: String = "", actionSecondary: @escaping (()->Void) = {}, isSecondary: Published<Bool>.Publisher?, type: LocalButtonStyle) {
         self.title = title
         self.action = action
         self.type = type
+        self.titleSecondary = titleSecondary
+        self.actionSecondary = actionSecondary
+        self.isSecondary = isSecondary!
     }
 }

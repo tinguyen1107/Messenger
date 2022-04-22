@@ -43,6 +43,8 @@
 		C3CDF1CB2740FB1A00542277 /* VMButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3CDF1CA2740FB1A00542277 /* VMButton.swift */; };
 		C3CDF1CE2741072700542277 /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3CDF1CD2741072700542277 /* SettingViewModel.swift */; };
 		C3CDF1D0274109FA00542277 /* AuthenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3CDF1CF274109FA00542277 /* AuthenViewModel.swift */; };
+		C3CEB2D72748C2C400045D46 /* InfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3CEB2D62748C2C400045D46 /* InfoViewModel.swift */; };
+		C3CEB2D92748CB5200045D46 /* AuthenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3CEB2D82748CB5200045D46 /* AuthenModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -82,6 +84,8 @@
 		C3CDF1CA2740FB1A00542277 /* VMButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VMButton.swift; sourceTree = "<group>"; };
 		C3CDF1CD2741072700542277 /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
 		C3CDF1CF274109FA00542277 /* AuthenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenViewModel.swift; sourceTree = "<group>"; };
+		C3CEB2D62748C2C400045D46 /* InfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewModel.swift; sourceTree = "<group>"; };
+		C3CEB2D82748CB5200045D46 /* AuthenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +152,7 @@
 				A3481C9A26C52EB300E9C6FB /* InfoView.swift */,
 				A3481C9F26C55C0300E9C6FB /* Information.swift */,
 				A31138B226E107D500CB4E2C /* Infomation_Edit.swift */,
+				C3CEB2D62748C2C400045D46 /* InfoViewModel.swift */,
 			);
 			path = "Info User";
 			sourceTree = "<group>";
@@ -262,6 +267,7 @@
 				A3EC58C826CE716A00150093 /* AuthenForm.swift */,
 				A3D72A6F26BECBCE00332E44 /* AuthenView.swift */,
 				C3CDF1CF274109FA00542277 /* AuthenViewModel.swift */,
+				C3CEB2D82748CB5200045D46 /* AuthenModel.swift */,
 			);
 			path = Authen;
 			sourceTree = "<group>";
@@ -368,6 +374,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C3CEB2D92748CB5200045D46 /* AuthenModel.swift in Sources */,
 				A327D5AB26C42B5C0048E9E4 /* HomeView.swift in Sources */,
 				A3C4845526C238B90037389D /* Alamofire.swift in Sources */,
 				A32430FD26CEA4CC00A81853 /* Keyboard.swift in Sources */,
@@ -400,6 +407,7 @@
 				A3C4845F26C2C0D30037389D /* ListUser.swift in Sources */,
 				A327D5B026C444E00048E9E4 /* SearchBar.swift in Sources */,
 				A3481CA426C597B000E9C6FB /* UserDetails.swift in Sources */,
+				C3CEB2D72748C2C400045D46 /* InfoViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

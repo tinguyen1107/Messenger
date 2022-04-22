@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import Alamofire
 
 struct AuthenForm: View {
     @EnvironmentObject var services: DefaultController

@@ -28,7 +28,6 @@ final class DefaultController: ObservableObject {
     
     init() {
         socketListening()
-        
     }
     
     func socketListening () {

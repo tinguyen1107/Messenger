@@ -15,8 +15,12 @@ struct VButton: View {
     }
     
     var body: some View {
-        Button(viewModel.title) {
-            viewModel.action()
+        Button(viewModel.isSecondary ? viewModel.titleSecondary : viewModel.title) {
+            if viewModel.isSecondary {
+                viewModel.actionSecondary
+            } else {
+                viewModel.action()
+            }
         }.buttonStyle(.automatic)
     }
 }

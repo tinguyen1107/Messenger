@@ -41,7 +41,7 @@ struct HomeView: View {
     
     var body: some View {
         TabView (selection: $selection) {
-            InfoView()
+            InfoView(viewModel: InfoViewModel(authenModel: authenModel))
                 .tabItem {
                     Label("Users", systemImage: "person.crop.circle")
                 }

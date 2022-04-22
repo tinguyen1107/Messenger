@@ -15,12 +15,15 @@ class SettingViewModel: ObservableObject {
     
     init(authenModel: AuthenModel) {
         self.authenModel = authenModel
-        logOut = VMButton(title: "Log Out",
-                                 action: { authenModel.authenState = .editing },
-                                 type: .text)
+        logOut = VMButton(
+            title: "Log Out",
+            action: {
+                authenModel.logOut()
+            },
+            type: .text)
         info = VMButton(title: "App Information",
-                               action: {},
-                               type: .text)
+                        action: {},
+                        type: .text)
         info.action = { self.info_popup.toggle() }
     }
 }
